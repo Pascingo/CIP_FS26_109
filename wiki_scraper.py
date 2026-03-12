@@ -53,9 +53,9 @@ def scrape_medal_table_by_year(year):
     return df
 
 
-# 1. Liste der Jahre generieren (1924-1992 alle 4 Jahre, danach ab 1994 alle 4 Jahre)
+# Create List for all years
 years = list(range(1924, 1996, 4)) + list(range(1994, 2027, 4))
-years = sorted(list(set(years))) # Zur Sicherheit sortieren und Duplikate entfernen
+years = sorted(list(set(years))) 
 
 # Collecting DataFrames
 all_dfs = []
