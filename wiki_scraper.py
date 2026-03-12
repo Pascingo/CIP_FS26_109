@@ -70,40 +70,11 @@ for y in years:
 
 # 3. Create Master Dataframe
 if all_dfs:
-    master_df = pd.concat(all_dfs, ignore_index=True) # [cite: 978]
-    print("\nScraping abgeschlossen! Dimension des Master-DataFrames:", master_df.shape) # [cite: 989]
+    master_df = pd.concat(all_dfs, ignore_index=True)  #
+    print("\nScraping abgeschlossen! Dimension des Master-DataFrames:", master_df.shape)  # [cite: 989]
     print(master_df.head())
-    
+
+    # Save file locally
     master_df.to_csv("winter_olympics_medals_master.csv", index=False)
 else:
-    print("Es konnten keine Daten gesammelt werden.")        print("Medaillentabelle konnte nicht gefunden werden.")
-        return None
-        
-    # 3. Extract Data
-    rows = []
-    # Skip Header
-    for tr in target_table.find_all('tr')[1:]:
-        
-        cols = tr.find_all(['th', 'td'])
-        
-        # Extract text and clean it
-        cols_text = [c.text.strip() for c in cols]
-        
-        if len(cols_text) > 0:
-            rows.append(cols_text)
-            
-    # 4. Create Pandas
-    try:
-        df = pd.DataFrame(rows, columns=headers)
-    except ValueError:
-        print("Warnung: Spaltenanzahl weicht ab. Generiere DataFrame ohne Header-Zuweisung.")
-        df = pd.DataFrame(rows)
-        
-    return df
-
-# startScraper 
-df_medals_2026 = scrape_2026_medal_table()
-
-if df_medals_2026 is not None:
-    print("\nErste Zeilen des DataFrames:")
-    print(df_medals_2026.head())
+    print("Es konnten keine Daten gesammelt werden.")
