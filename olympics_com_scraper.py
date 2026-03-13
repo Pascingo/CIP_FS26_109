@@ -196,4 +196,4 @@ if __name__ == "__main__":
         print("\nPreview of the first 5 rows:")
         print(df_results.head())
     else:
-        print("Failed to extract data or DataFrame is empty. CSV was not created.")
+        print("Failed to extract data or DataFrame is empty. CSV was not created!")
