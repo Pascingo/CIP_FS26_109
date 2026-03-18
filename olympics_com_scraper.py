@@ -10,6 +10,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    ElementClickInterceptedException,
+    TimeoutException
+)
+
+
+EXPAND_XPATH = "//button[@aria-expanded='false' and contains(@title, 'open the row')]"
 
 
 def setup_driver():
@@ -29,6 +37,101 @@ def setup_driver():
     driver = webdriver.Chrome(service=service, options=options)
 
     return driver
+
+
+
+def expand_until_stable(driver, max_passes=25):
+    """
+    Click all currently present collapsed expanders.
+    Repeat passes because expanding parents can inject new nested expanders
+    *without scrolling*.
+    Returns number of successful expansions performed across all passes.
+    """
+    total_clicked = 0
+
+    for _ in range(max_passes):
+        buttons = driver.find_elements(By.XPATH, EXPAND_XPATH)
+        if not buttons:
+            break
+
+        clicked_this_pass = 0
+        for btn in buttons:
+            try:
+                    # Still collapsed?
+                if btn.get_attribute("aria-expanded") != "false":
+                    continue
+
+                # Prefer native click; fallback to JS click if Selenium thinks it's not interactable
+                try:
+                    btn.click()
+                except Exception:
+                    driver.execute_script("arguments[0].click();", btn)
+
+                # Give React/JS time to update aria-expanded and mount nested rows
+                WebDriverWait(driver, 2).until(lambda d: btn.get_attribute("aria-expanded") == "true")
+
+                clicked_this_pass += 1
+                total_clicked += 1
+                time.sleep(0.4)
+
+            except (StaleElementReferenceException, ElementClickInterceptedException, TimeoutException):
+                # DOM re-rendered or overlay intercepted; next pass usually catches it
+                continue
+            except Exception:
+                continue
+
+        # If nothing changed in this pass, we’re stable for the current DOM slice
+        if clicked_this_pass == 0:
+            break
+
+    return total_clicked
+
+
+def scroll_down_only_if_needed(driver, step=900):
+    """
+    Scroll window down by 'step' pixels.
+    Returns True if the scroll position changed (i.e., we actually moved).
+    """
+    before = driver.execute_script("return window.pageYOffset;")
+    driver.execute_script(f"window.scrollBy(0, {step});")
+    time.sleep(0.7)
+    after = driver.execute_script("return window.pageYOffset;")
+    return after > before
+
+
+def expand_entire_site(driver, step=900, max_cycles=300):
+    """
+    Iteratively expand everything:
+      - Expand until stable (no new expanders clicked)
+      - Only then scroll
+    Stops when we can’t scroll further AND no new expanders are present.
+    """
+    grand_total = 0
+    cycles = 0
+
+    while cycles < max_cycles:
+        cycles += 1
+
+        # 1) Expand everything currently available in the DOM (including newly injected nested stuff)
+        clicked = expand_until_stable(driver)
+        grand_total += clicked
+        if clicked > 0:
+            # Important: do NOT scroll yet — expanding often reveals more nested expanders immediately
+            continue
+
+        # 2) If stable (no clicks), THEN scroll to load next virtual slice
+        moved = scroll_down_only_if_needed(driver, step=step)
+
+        # 3) If we didn't move, we might be at the end. Confirm no expanders exist.
+        if not moved:
+            remaining = driver.find_elements(By.XPATH, EXPAND_XPATH)
+            if not remaining:
+                break
+            # If remaining exists but no movement, try a small nudge + one more expand pass
+            driver.execute_script("window.scrollBy(0, 250);")
+            time.sleep(0.6)
+
+    return grand_total
 
 
 def scrape_olympics_medals(url):
@@ -67,45 +170,33 @@ def scrape_olympics_medals(url):
         except Exception:
             print("No secondary cookie banner found. The path is clear.")
 
-        # 2. Expand rows and extract data AS WE SCROLL
-        print("Expanding sports and extracting data simultaneously. This might take a few minutes...")
+        # 2. Expand EVERYTHING first (scroll only when no new expandable sections exist)
+        print("Phase A: Expanding all rows (scrolling only when stable)...")
+        total_expanded = expand_entire_site(driver, step=900)
+        #total_expanded += expand_entire_site(driver, step=900)
+        print(f"Expansion complete. Total expanded clicks: {total_expanded}")
+
+        # 3. Scroll back to top and scrape top->bottom (virtualized DOM => must scroll while scraping)
+        print("Phase B: Scrolling back to top and scraping...")
+        driver.execute_script("window.scrollTo(0, 0);")
+        time.sleep(1)
 
         extracted_data = []
+        seen = set()
+
+        current_sport = "Unknown"
+        current_discipline = "Unknown"
 
         while True:
-            # 2a: Aufklappen
-            expand_buttons = driver.find_elements(By.XPATH,
-                                                  "//button[@aria-expanded='false' and contains(@title, 'open the row')]")
-
-            for btn in expand_buttons:
-                try:
-                    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", btn)
-                    time.sleep(0.3)
-                    driver.execute_script("arguments[0].click();", btn)
-                    time.sleep(0.3)
-                except Exception:
-                    continue
-
-            # --- 2b: We scrape Data inclusive sport and discipline ---
             soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-            # We look for all Elements with role='row'
             all_rows = soup.find_all(['button', 'div'], role='row')
 
-            # temporary memory for scraper
-            current_sport = "Unknown"
-            current_discipline = "Unknown"
-
             for row in all_rows:
-                # 1. Case: We see a "Plus Button" (Header)
+                # Header button row: update current sport/discipline context
                 if row.name == 'button' and 'title' in row.attrs:
-                    title_text = row['title']  # z.B. "Alpine Skiing - Women's Downhill: open the row..."
-
-                    # Extract text
+                    title_text = row['title']
                     if ':' in title_text:
                         event_name = title_text.split(':')[0].strip()
-
-                        # If Separator in there
                         if '-' in event_name:
                             parts = event_name.split('-', 1)
                             current_sport = parts[0].strip()
@@ -113,31 +204,33 @@ def scrape_olympics_medals(url):
                         else:
                             current_sport = event_name
                             current_discipline = "Overall"
-
-
                     continue
 
-                # 2. Case: Data-Row (Div)
+                # Data row
                 if row.name == 'div':
                     medal_div = row.find('div', title=lambda t: t and 'medal' in t.lower())
                     if not medal_div:
                         continue
 
-                    medal_type = medal_div['title']
+                    medal_type = medal_div.get('title', 'Unknown')
+
                     img_tag = row.find('img')
-                    country_full = img_tag['title'] if img_tag and 'title' in img_tag.attrs else "Unknown"
+                    country_full = img_tag.get('title', 'Unknown') if img_tag else "Unknown"
 
                     p_tags = row.find_all('p', attrs={'translate': 'no'})
                     noc_code = "Unknown"
                     athlete_name = "Team Event / Unknown"
-
                     if len(p_tags) >= 2:
                         noc_code = p_tags[0].text.strip()
                         athlete_name = p_tags[1].text.strip()
                     elif len(p_tags) == 1:
                         noc_code = p_tags[0].text.strip()
 
-                    # We add the sport and discipline to the file
+                    key = (current_sport, current_discipline, medal_type, noc_code, country_full, athlete_name)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+
                     extracted_data.append({
                         'Sport': current_sport,
                         'Discipline': current_discipline,
@@ -147,18 +240,11 @@ def scrape_olympics_medals(url):
                         'Athlete': athlete_name
                     })
 
-            # 2c: Scroll
-            driver.execute_script("window.scrollBy(0, 800);")
-            time.sleep(2)
+            # scroll down for next virtual slice; stop when no movement
+            if not scroll_down_only_if_needed(driver, step=900):
+                break        
 
-            new_height = driver.execute_script("return document.body.scrollHeight")
-            current_position = driver.execute_script("return window.pageYOffset + window.innerHeight")
-
-            if current_position >= (new_height - 50):
-                print("Reached the end of the list.")
-                break
-
-        # 3. Create DataFrame and CLEAN DUPLICATES
+        # 4. Create DataFrame and CLEAN DUPLICATES
         print(f"Total raw records extracted (including duplicates): {len(extracted_data)}")
         df = pd.DataFrame(extracted_data)
 
