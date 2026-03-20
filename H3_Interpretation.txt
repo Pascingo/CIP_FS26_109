@@ -1,0 +1,63 @@
+Statsmodel Output:
+
+==================================================
+--- STATISTICAL ANALYSIS (OLS REGRESSION) ---
+==================================================
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:            Medal_Share   R-squared:                       0.541
+Model:                            OLS   Adj. R-squared:                  0.538
+Method:                 Least Squares   F-statistic:                     165.0
+Date:                Fri, 20 Mar 2026   Prob (F-statistic):           1.14e-70
+Time:                        09:23:09   Log-Likelihood:                 818.01
+No. Observations:                 424   AIC:                            -1628.
+Df Residuals:                     420   BIC:                            -1612.
+Df Model:                           3
+Covariance Type:            nonrobust
+=======================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+Intercept               0.0138      0.003      5.386      0.000       0.009       0.019
+Is_Host_Neighbour       0.0090      0.005      1.713      0.087      -0.001       0.019
+Is_Host                 0.0406      0.008      5.344      0.000       0.026       0.056
+Historical_Baseline     0.6718      0.031     21.406      0.000       0.610       0.733
+==============================================================================
+Omnibus:                       90.311   Durbin-Watson:                   2.673
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              335.102
+Skew:                           0.909   Prob(JB):                     1.71e-73
+Kurtosis:                       6.958   Cond. No.                         18.5
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+
+Statistical Analysis & Interpretation
+1. Overall Model Fit
+The Ordinary Least Squares (OLS) regression model yields an R-squared value of 0.541. This indicates that our model
+explains 54.1% of the variance in the Olympic medalshare.
+
+2. Control Variables (Isolating the Effect)
+To accurately measure the spatial spillover effect, we successfully controlled for two major confounding factors:
+Historical Baseline (Past Performance): As expected, this is the strongest predictor in the model (Coefficient: 0.6718,
+p-value: 0.000). A country's medal share at the previous Winter Olympics highly correlates with its current performance,
+making it an important control variable.
+
+Home Advantage (Is_Host): The model mathematically proves a "home advantage" (Coefficient: 0.0406, p-value: 0.000).
+Hosting the Winter Olympics increases a country's medal share by an average of roughly 4.06%.
+
+3. Research Question: The Geographic Spillover Effect
+The research question focuses on the Is_Host_Neighbour variable:
+Coefficient (0.0090): The model shows a slight positive trend, suggesting that neighboring countries of the host gain
+an average increase of 0.9% in their overall medal share.
+
+Statistical Significance (p-value = 0.087): In practice, an alpha level of 0.05 (5%) is required to reject the null
+hypothesis. Since our p-value of 0.087 is higher than 0.05, this  trend is not statistically significant at the
+standard 5% level (though it shows marginal significance at the 10% level).
+
+4. Conclusion
+Based on the spatial and statistical analysis, the answer to our research question is No. When holding historical
+baseline performance constant and isolating the host's home advantage, sharing a direct land border with
+the host country does not reveal a statistically significant positive spillover effect on a neighboring
+country's Olympic medal share. The visual analysis (boxplots and scatterplots) further supports this conclusion,
+showing substantial overlap in the performance distribution between neighbors and non-neighbors.
