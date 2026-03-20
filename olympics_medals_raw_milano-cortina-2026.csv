@@ -1,0 +1,140 @@
+Sport,Discipline,Medal,NOC,Country,Athlete
+Unknown,Unknown,Gold medal,USA,United States,JOHNSON Breezy
+Alpine Skiing,Women's Downhill,Gold medal,USA,United States,JOHNSON Breezy
+Alpine Skiing,Women's Downhill,Silver medal,GER,Germany,AICHER Emma
+Alpine Skiing,Women's Downhill,Bronze medal,ITA,Italy,GOGGIA Sofia
+Alpine Skiing,Women's Slalom,Gold medal,USA,United States,SHIFFRIN Mikaela
+Alpine Skiing,Women's Slalom,Silver medal,SUI,Switzerland,RAST Camille
+Alpine Skiing,Women's Slalom,Bronze medal,SWE,Sweden,SWENN LARSSON Anna
+Alpine Skiing,Women's Giant Slalom,Gold medal,ITA,Italy,BRIGNONE Federica
+Alpine Skiing,Women's Giant Slalom,Silver medal,SWE,Sweden,HECTOR Sara
+Alpine Skiing,Women's Giant Slalom,Silver medal,NOR,Norway,STJERNESUND Thea Louise
+Alpine Skiing,Women's Super-G,Gold medal,ITA,Italy,BRIGNONE Federica
+Alpine Skiing,Women's Super-G,Silver medal,FRA,France,MIRADOLI Romane
+Alpine Skiing,Women's Super-G,Bronze medal,AUT,Austria,HUETTER Cornelia
+Alpine Skiing,Women's Team Combined,Gold medal,AUT,Austria,Austria 2
+Alpine Skiing,Women's Team Combined,Silver medal,GER,Germany,Germany
+Alpine Skiing,Women's Team Combined,Bronze medal,USA,United States,United States 2
+Alpine Skiing,Men's Downhill,Gold medal,SUI,Switzerland,von ALLMEN Franjo
+Alpine Skiing,Men's Downhill,Silver medal,ITA,Italy,FRANZONI Giovanni
+Alpine Skiing,Men's Downhill,Bronze medal,ITA,Italy,PARIS Dominik
+Alpine Skiing,Men's Slalom,Gold medal,SUI,Switzerland,MEILLARD Loic
+Alpine Skiing,Men's Slalom,Silver medal,AUT,Austria,GSTREIN Fabio
+Alpine Skiing,Men's Slalom,Bronze medal,NOR,Norway,KRISTOFFERSEN Henrik
+Alpine Skiing,Men's Giant Slalom,Gold medal,BRA,Brazil,PINHEIRO BRAATHEN Lucas
+Alpine Skiing,Men's Giant Slalom,Silver medal,SUI,Switzerland,ODERMATT Marco
+Alpine Skiing,Men's Giant Slalom,Bronze medal,SUI,Switzerland,MEILLARD Loic
+Alpine Skiing,Men's Super-G,Gold medal,SUI,Switzerland,von ALLMEN Franjo
+Alpine Skiing,Men's Super-G,Silver medal,USA,United States,COCHRAN-SIEGLE Ryan
+Alpine Skiing,Men's Super-G,Bronze medal,SUI,Switzerland,ODERMATT Marco
+Alpine Skiing,Men's Team Combined,Gold medal,SUI,Switzerland,Switzerland 2
+Alpine Skiing,Men's Team Combined,Silver medal,AUT,Austria,Austria 1
+Alpine Skiing,Men's Team Combined,Silver medal,SUI,Switzerland,Switzerland 1
+Unknown,Unknown,Gold medal,USA,United States,LEMLEY Elizabeth
+Freestyle Skiing,Women's Moguls,Gold medal,USA,United States,LEMLEY Elizabeth
+Freestyle Skiing,Women's Moguls,Silver medal,USA,United States,KAUF Jaelin
+Freestyle Skiing,Women's Moguls,Bronze medal,FRA,France,LAFFONT Perrine
+Freestyle Skiing,Men's Moguls,Gold medal,AUS,Australia,WOODS Cooper
+Freestyle Skiing,Men's Moguls,Silver medal,CAN,Canada,KINGSBURY Mikael
+Freestyle Skiing,Men's Moguls,Bronze medal,JPN,Japan,HORISHIMA Ikuma
+Freestyle Skiing,Women's Dual Moguls,Gold medal,AUS,Australia,ANTHONY Jakara
+Freestyle Skiing,Women's Dual Moguls,Silver medal,USA,United States,KAUF Jaelin
+Freestyle Skiing,Women's Dual Moguls,Bronze medal,USA,United States,LEMLEY Elizabeth
+Freestyle Skiing,Men's Dual Moguls,Gold medal,CAN,Canada,KINGSBURY Mikael
+Freestyle Skiing,Men's Dual Moguls,Silver medal,JPN,Japan,HORISHIMA Ikuma
+Freestyle Skiing,Men's Dual Moguls,Bronze medal,AUS,Australia,GRAHAM Matt
+Freestyle Skiing,Women's Aerials,Gold medal,CHN,China,XU Mengtao
+Freestyle Skiing,Women's Aerials,Silver medal,AUS,Australia,SCOTT Danielle
+Freestyle Skiing,Women's Aerials,Bronze medal,CHN,China,SHAO Qi
+Freestyle Skiing,Men's Aerials,Gold medal,CHN,China,WANG Xindi
+Freestyle Skiing,Men's Aerials,Silver medal,SUI,Switzerland,ROTH Noe
+Freestyle Skiing,Men's Aerials,Bronze medal,CHN,China,LI Tianma
+Freestyle Skiing,Mixed Team Aerials,Gold medal,USA,United States,United States
+Freestyle Skiing,Mixed Team Aerials,Silver medal,SUI,Switzerland,Switzerland
+Freestyle Skiing,Mixed Team Aerials,Bronze medal,CHN,China,China
+Freestyle Skiing,Women's Ski Cross,Gold medal,GER,Germany,MAIER Daniela
+Freestyle Skiing,Women's Ski Cross,Silver medal,SUI,Switzerland,SMITH Fanny
+Freestyle Skiing,Women's Ski Cross,Bronze medal,SWE,Sweden,NAESLUND Sandra
+Freestyle Skiing,Men's Ski Cross,Gold medal,ITA,Italy,DEROMEDIS Simone
+Freestyle Skiing,Men's Ski Cross,Silver medal,ITA,Italy,TOMASONI Federico
+Freestyle Skiing,Men's Ski Cross,Bronze medal,SUI,Switzerland,FIVA Alex
+Freestyle Skiing,Women's Freeski Halfpipe,Gold medal,CHN,China,GU Ailing Eileen
+Freestyle Skiing,Women's Freeski Halfpipe,Silver medal,CHN,China,LI Fanghui
+Freestyle Skiing,Women's Freeski Halfpipe,Bronze medal,GBR,Great Britain,ATKIN Zoe
+Freestyle Skiing,Men's Freeski Halfpipe,Gold medal,USA,United States,FERREIRA Alex
+Freestyle Skiing,Men's Freeski Halfpipe,Silver medal,EST,Estonia,SILDARU Henry
+Freestyle Skiing,Men's Freeski Halfpipe,Bronze medal,CAN,Canada,MACKAY Brendan
+Freestyle Skiing,Women's Freeski Slopestyle,Gold medal,SUI,Switzerland,GREMAUD Mathilde
+Freestyle Skiing,Women's Freeski Slopestyle,Silver medal,CHN,China,GU Ailing Eileen
+Freestyle Skiing,Women's Freeski Slopestyle,Bronze medal,CAN,Canada,OLDHAM Megan
+Freestyle Skiing,Men's Freeski Slopestyle,Gold medal,NOR,Norway,RUUD Birk
+Freestyle Skiing,Men's Freeski Slopestyle,Silver medal,USA,United States,HALL Alex
+Freestyle Skiing,Men's Freeski Slopestyle,Bronze medal,NZL,New Zealand,HARRINGTON Luca
+Freestyle Skiing,Women's Freeski Big Air,Gold medal,CAN,Canada,OLDHAM Megan
+Freestyle Skiing,Women's Freeski Big Air,Silver medal,CHN,China,GU Ailing Eileen
+Freestyle Skiing,Women's Freeski Big Air,Bronze medal,ITA,Italy,TABANELLI Flora
+Freestyle Skiing,Men's Freeski Big Air,Gold medal,NOR,Norway,FROSTAD Tormod
+Freestyle Skiing,Men's Freeski Big Air,Silver medal,USA,United States,FOREHAND Mac
+Freestyle Skiing,Men's Freeski Big Air,Bronze medal,AUT,Austria,SVANCER Matej
+Unknown,Unknown,Gold medal,NED,Netherlands,VELZEBOER Xandra
+Short Track Speed Skating,Women's 500m,Gold medal,NED,Netherlands,VELZEBOER Xandra
+Short Track Speed Skating,Women's 500m,Silver medal,ITA,Italy,FONTANA Arianna
+Short Track Speed Skating,Women's 500m,Bronze medal,CAN,Canada,SARAULT Courtney
+Short Track Speed Skating,Women's 1000m,Gold medal,NED,Netherlands,VELZEBOER Xandra
+Short Track Speed Skating,Women's 1000m,Silver medal,CAN,Canada,SARAULT Courtney
+Short Track Speed Skating,Women's 1000m,Bronze medal,KOR,Korea,KIM Gilli
+Short Track Speed Skating,Women's 1500m,Gold medal,KOR,Korea,KIM Gilli
+Short Track Speed Skating,Women's 1500m,Silver medal,KOR,Korea,CHOI Minjeong
+Short Track Speed Skating,Women's 1500m,Bronze medal,USA,United States,STODDARD Corinne
+Short Track Speed Skating,Women's 3000m Relay,Gold medal,KOR,Korea,Korea
+Short Track Speed Skating,Women's 3000m Relay,Silver medal,ITA,Italy,Italy
+Short Track Speed Skating,Women's 3000m Relay,Bronze medal,CAN,Canada,Canada
+Short Track Speed Skating,Men's 500m,Gold medal,CAN,Canada,DUBOIS Steven
+Short Track Speed Skating,Men's 500m,Silver medal,NED,Netherlands,van 'T WOUT Melle
+Short Track Speed Skating,Men's 500m,Bronze medal,NED,Netherlands,van 'T WOUT Jens
+Short Track Speed Skating,Men's 1000m,Gold medal,NED,Netherlands,van 'T WOUT Jens
+Short Track Speed Skating,Men's 1000m,Silver medal,CHN,China,SUN Long
+Short Track Speed Skating,Men's 1000m,Bronze medal,KOR,Korea,RIM Jongun
+Short Track Speed Skating,Men's 1500m,Gold medal,NED,Netherlands,van 'T WOUT Jens
+Short Track Speed Skating,Men's 1500m,Silver medal,KOR,Korea,HWANG Daeheon
+Short Track Speed Skating,Men's 1500m,Bronze medal,LAT,Latvia,KRUZBERGS Roberts
+Short Track Speed Skating,Men's 5000m Relay,Gold medal,NED,Netherlands,Netherlands
+Short Track Speed Skating,Men's 5000m Relay,Silver medal,KOR,Korea,Korea
+Short Track Speed Skating,Men's 5000m Relay,Bronze medal,ITA,Italy,Italy
+Short Track Speed Skating,Mixed Team Relay,Gold medal,ITA,Italy,Italy
+Short Track Speed Skating,Mixed Team Relay,Silver medal,CAN,Canada,Canada
+Short Track Speed Skating,Mixed Team Relay,Bronze medal,BEL,Belgium,Belgium
+Unknown,Unknown,Gold medal,CZE,Czechia,MADEROVA Zuzana
+Snowboard,Women's Parallel Giant Slalom,Gold medal,CZE,Czechia,MADEROVA Zuzana
+Snowboard,Women's Parallel Giant Slalom,Silver medal,AUT,Austria,PAYER Sabine
+Snowboard,Women's Parallel Giant Slalom,Bronze medal,ITA,Italy,DALMASSO Lucia
+Snowboard,Men's Parallel Giant Slalom,Gold medal,AUT,Austria,KARL Benjamin
+Snowboard,Men's Parallel Giant Slalom,Silver medal,KOR,Korea,KIM Sangkyum
+Snowboard,Men's Parallel Giant Slalom,Bronze medal,BUL,Bulgaria,ZAMFIROV Tervel
+Snowboard,Women's Snowboard Cross,Gold medal,AUS,Australia,BAFF Josie
+Snowboard,Women's Snowboard Cross,Silver medal,CZE,Czechia,ADAMCZYKOVA Eva
+Snowboard,Women's Snowboard Cross,Bronze medal,ITA,Italy,MOIOLI Michela
+Snowboard,Men's Snowboard Cross,Gold medal,AUT,Austria,HAEMMERLE Alessandro
+Snowboard,Men's Snowboard Cross,Silver medal,CAN,Canada,GRONDIN Eliot
+Snowboard,Men's Snowboard Cross,Bronze medal,AUT,Austria,DUSEK Jakob
+Snowboard,Mixed Team Snowboard Cross,Gold medal,GBR,Great Britain,Great Britain 1
+Snowboard,Mixed Team Snowboard Cross,Silver medal,ITA,Italy,Italy 1
+Snowboard,Mixed Team Snowboard Cross,Bronze medal,FRA,France,France 2
+Snowboard,Women's Snowboard Halfpipe,Gold medal,KOR,Korea,CHOI Gaon
+Snowboard,Women's Snowboard Halfpipe,Silver medal,USA,United States,KIM Chloe
+Snowboard,Women's Snowboard Halfpipe,Bronze medal,JPN,Japan,ONO Mitsuki
+Snowboard,Men's Snowboard Halfpipe,Gold medal,JPN,Japan,TOTSUKA Yuto
+Snowboard,Men's Snowboard Halfpipe,Silver medal,AUS,Australia,JAMES Scotty
+Snowboard,Men's Snowboard Halfpipe,Bronze medal,JPN,Japan,YAMADA Ryusei
+Snowboard,Women's Snowboard Slopestyle,Gold medal,JPN,Japan,FUKADA Mari
+Snowboard,Women's Snowboard Slopestyle,Silver medal,NZL,New Zealand,SADOWSKI SYNNOTT Zoi
+Snowboard,Women's Snowboard Slopestyle,Bronze medal,JPN,Japan,MURASE Kokomo
+Snowboard,Men's Snowboard Slopestyle,Gold medal,CHN,China,SU Yiming
+Snowboard,Men's Snowboard Slopestyle,Silver medal,JPN,Japan,HASEGAWA Taiga
+Snowboard,Men's Snowboard Slopestyle,Bronze medal,USA,United States,CANTER Jake
+Snowboard,Women's Snowboard Big Air,Gold medal,JPN,Japan,MURASE Kokomo
+Snowboard,Women's Snowboard Big Air,Silver medal,NZL,New Zealand,SADOWSKI SYNNOTT Zoi
+Snowboard,Women's Snowboard Big Air,Bronze medal,KOR,Korea,YU Seungeun
+Snowboard,Men's Snowboard Big Air,Gold medal,JPN,Japan,KIMURA Kira
+Snowboard,Men's Snowboard Big Air,Silver medal,JPN,Japan,KIMATA Ryoma
+Snowboard,Men's Snowboard Big Air,Bronze medal,CHN,China,SU Yiming
