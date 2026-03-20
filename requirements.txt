@@ -1,1 +1,1 @@
-pip install pandas numpy requests beautifulsoup4 selenium webdriver-manager scipy lxml pycountry
+pip install pandas numpy requests beautifulsoup4 selenium webdriver-manager scipy lxml pycountry statsmodels seaborn matplotlib
