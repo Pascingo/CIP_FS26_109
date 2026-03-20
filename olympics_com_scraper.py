@@ -183,66 +183,85 @@ def scrape_olympics_medals(url):
 
         extracted_data = []
         seen = set()
-
-        current_sport = "Unknown"
-        current_discipline = "Unknown"
+        second_pass = False
 
         while True:
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            all_rows = soup.find_all(['button', 'div'], role='row')
+            all_rows = driver.find_elements(By.CSS_SELECTOR, "div[role='row']")
 
-            for row in all_rows:
-                # Header button row: update current sport/discipline context
-                if row.name == 'button' and 'title' in row.attrs:
-                    title_text = row['title']
-                    if ':' in title_text:
-                        event_name = title_text.split(':')[0].strip()
-                        if '-' in event_name:
-                            parts = event_name.split('-', 1)
-                            current_sport = parts[0].strip()
-                            current_discipline = parts[1].strip()
-                        else:
-                            current_sport = event_name
-                            current_discipline = "Overall"
+            for row_el in all_rows:
+
+                # Only process rows that contain a medal div
+                medal_divs = row_el.find_elements(By.CSS_SELECTOR, "div[title*='medal']")
+                if not medal_divs:
                     continue
 
-                # Data row
-                if row.name == 'div':
-                    medal_div = row.find('div', title=lambda t: t and 'medal' in t.lower())
-                    if not medal_div:
-                        continue
+                # Walk backwards through siblings in the live DOM to find
+                # the nearest preceding header button — that is this row's parent event
+                header_el = driver.execute_script("""
+                    let node = arguments[0];
+                    for (let depth = 0; depth < 6; depth++) {
+                        node = node.parentElement;
+                        if (!node) break;
+                        // The parent itself might be the button (Structure A)
+                        if (node.tagName === 'BUTTON' && node.hasAttribute('aria-expanded'))
+                            return node;
+                        // Or walk backwards among the parent's siblings (Structure B)
+                        let sib = node.previousElementSibling;
+                        for (let i = 0; i < 10 && sib; i++) {
+                            if (sib.tagName === 'BUTTON' && sib.hasAttribute('aria-expanded'))
+                                return sib;
+                            sib = sib.previousElementSibling;
+                        }
+                    }
+                    return null;
+                """, row_el)
 
-                    medal_type = medal_div.get('title', 'Unknown')
+                if header_el is None:
+                    continue
 
-                    img_tag = row.find('img')
-                    country_full = img_tag.get('title', 'Unknown') if img_tag else "Unknown"
+                # Parse sport/discipline from that header's title attribute
+                title_text = header_el.get_attribute('title')
+                if ':' not in title_text:
+                    continue
 
-                    p_tags = row.find_all('p', attrs={'translate': 'no'})
-                    noc_code = "Unknown"
-                    athlete_name = "Team Event / Unknown"
-                    if len(p_tags) >= 2:
-                        noc_code = p_tags[0].text.strip()
-                        athlete_name = p_tags[1].text.strip()
-                    elif len(p_tags) == 1:
-                        noc_code = p_tags[0].text.strip()
+                event_name = title_text.split(':')[0].strip()
+                if ' - ' in event_name:
+                    parts = event_name.split(' - ', 1)
+                    sport = parts[0].strip()
+                    discipline = parts[1].strip()
+                else:
+                    sport = event_name
+                    discipline = "Overall"
 
-                    key = (current_sport, current_discipline, medal_type, noc_code, country_full, athlete_name)
-                    if key in seen:
-                        continue
-                    seen.add(key)
+                # Parse the row's own HTML with BeautifulSoup as before
+                row_soup = BeautifulSoup(row_el.get_attribute('outerHTML'), 'html.parser')
 
-                    extracted_data.append({
-                        'Sport': current_sport,
-                        'Discipline': current_discipline,
-                        'Medal': medal_type,
-                        'NOC': noc_code,
-                        'Country': country_full,
-                        'Athlete': athlete_name
-                    })
+                medal_type = medal_divs[0].get_attribute('title')
+                img_tag = row_soup.find('img')
+                country_full = img_tag.get('title', 'Unknown') if img_tag else 'Unknown'
+
+                p_tags = row_soup.find_all('p', attrs={'translate': 'no'})
+                noc_code = p_tags[0].text.strip() if len(p_tags) >= 1 else 'Unknown'
+                athlete_name = p_tags[1].text.strip() if len(p_tags) >= 2 else 'Team Event / Unknown'
+
+                key = (sport, discipline, medal_type, noc_code, country_full, athlete_name)
+                if key in seen:
+                    continue
+                seen.add(key)
+
+                extracted_data.append({
+                    'Sport': sport, 'Discipline': discipline,
+                    'Medal': medal_type, 'NOC': noc_code,
+                    'Country': country_full, 'Athlete': athlete_name
+                })
 
             # scroll down for next virtual slice; stop when no movement
             if not scroll_down_only_if_needed(driver, step=900):
-                break        
+                if second_pass:
+                    break
+                second_pass = True
+                driver.execute_script("window.scrollTo(0, 0);")
+                time.sleep(1)
 
         # 4. Create DataFrame and CLEAN DUPLICATES
         print(f"Total raw records extracted (including duplicates): {len(extracted_data)}")
