@@ -1,0 +1,26 @@
+edition_id,year,host_city,confirmed
+29,1924,Chamonix,yes
+30,1928,St. Moritz,yes
+31,1932,Lake Placid,no
+32,1936,Garmisch-Partenkirchen,no
+33,1948,St. Moritz,no
+34,1952,Oslo,no
+35,1956,Cortina d'Ampezzo,no
+36,1960,Squaw Valley,no
+37,1964,Innsbruck,no
+38,1968,Grenoble,no
+39,1972,Sapporo,yes
+40,1976,Innsbruck,no
+41,1980,Lake Placid,no
+42,1984,Sarajevo,yes
+43,1988,Calgary,yes
+44,1992,Albertville,yes
+45,1994,Lillehammer,yes
+46,1998,Nagano,yes
+47,2002,Salt Lake City,yes
+49,2006,Turin,yes
+57,2010,Vancouver,yes
+58,2014,Sochi,yes
+60,2018,PyeongChang,yes
+62,2022,Beijing,yes
+72,2026,Milano-Cortina,yes
