@@ -23,7 +23,7 @@ from scipy import stats
 # 1. Load & feature engineering
 # ══════════════════════════════════════════════════════════════════════════════
 
-df = pd.read_csv("winter_olympics_medals_clean.csv")
+df = pd.read_csv("../Data_clean/winter_olympics_medals_clean.csv")
 
 # Host mapping (host country name must match Country column in dataset)
 HOSTS = {

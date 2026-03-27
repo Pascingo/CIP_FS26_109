@@ -97,7 +97,7 @@ if __name__ == "__main__":
     df_hosts = scrape_winter_olympic_hosts()
 
     if not df_hosts.empty:
-        output_file = "winter_olympics_hosts_raw.csv"
+        output_file = "../Data_raw/winter_olympics_hosts_raw.csv"
 
         # Export the cleaned DataFrame to a CSV file
         df_hosts.to_csv(output_file, index=False)

@@ -90,7 +90,7 @@ def process_host_countries(input_csv: str, output_csv: str) -> None:
 
 if __name__ == "__main__":
     # Define file paths
-    RAW_FILE = "winter_olympics_hosts_raw.csv"
-    CLEAN_FILE = "winter_olympics_hosts_integrated.csv"
+    RAW_FILE = "../Data_raw/winter_olympics_hosts_raw.csv"
+    CLEAN_FILE = "../Data_raw/winter_olympics_hosts_integrated.csv"
 
     process_host_countries(RAW_FILE, CLEAN_FILE)

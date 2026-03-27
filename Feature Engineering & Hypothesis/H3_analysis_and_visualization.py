@@ -116,7 +116,7 @@ def create_visualizations(df: pd.DataFrame):
 
 if __name__ == "__main__":
     # Load the integrated dataset
-    input_file = "winter_olympics_analysis_ready.csv"
+    input_file = "../Data_clean/winter_olympics_analysis_ready.csv"
     try:
         df_master = pd.read_csv(input_file)
 
