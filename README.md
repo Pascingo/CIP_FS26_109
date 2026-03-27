@@ -36,7 +36,7 @@ Our pipeline is divided into three main phases, reflecting the CIP module requir
 
 ### 2. Data Cleaning & Transformation
 * `clean_winter_olympics.py`: The core data preparation script using `pandas`. It resolves inconsistencies in the raw master CSV file, fixes column schemas, removes aggregate rows, recalculates missing `Total` values, and corrects data types (Output: `winter_olympics_medals_clean.csv`).
-* `host_standardization.py` *(Note: Adjust filename if you named it differently)*: Translates English country names into standardized ISO-3 codes using custom dictionaries and the `pycountry` library to prepare for data merging.
+* `host_standardization.py` *(CODE NAME ANPASSEN)*: Translates English country names into standardized ISO-3 codes using custom dictionaries and the `pycountry` library to prepare for data merging.
 * `host_and_neighbour_adder.py`: The main feature engineering script. It merges the cleaned medals dataset, the standardized host dataset, and the JSON API data. It calculates the `Is_Host` and `Is_Host_Neighbour` boolean variables (Output: `winter_olympics_analysis_ready.csv`).
 
 ### 3. Analysis & Presentation

@@ -1,5 +1,4 @@
 Sport,Discipline,Medal,NOC,Country,Athlete
-Unknown,Unknown,Gold medal,USA,United States,JOHNSON Breezy
 Alpine Skiing,Women's Downhill,Gold medal,USA,United States,JOHNSON Breezy
 Alpine Skiing,Women's Downhill,Silver medal,GER,Germany,AICHER Emma
 Alpine Skiing,Women's Downhill,Bronze medal,ITA,Italy,GOGGIA Sofia
@@ -30,7 +29,111 @@ Alpine Skiing,Men's Super-G,Bronze medal,SUI,Switzerland,ODERMATT Marco
 Alpine Skiing,Men's Team Combined,Gold medal,SUI,Switzerland,Switzerland 2
 Alpine Skiing,Men's Team Combined,Silver medal,AUT,Austria,Austria 1
 Alpine Skiing,Men's Team Combined,Silver medal,SUI,Switzerland,Switzerland 1
-Unknown,Unknown,Gold medal,USA,United States,LEMLEY Elizabeth
+Biathlon,Men's 20km Individual,Gold medal,NOR,Norway,BOTN Johan-Olav
+Biathlon,Men's 20km Individual,Silver medal,FRA,France,PERROT Eric
+Biathlon,Men's 20km Individual,Bronze medal,NOR,Norway,LAEGREID Sturla Holm
+Biathlon,Women's 15km Individual,Gold medal,FRA,France,SIMON Julia
+Biathlon,Women's 15km Individual,Silver medal,FRA,France,JEANMONNOT Lou
+Biathlon,Women's 15km Individual,Bronze medal,BUL,Bulgaria,HRISTOVA Lora
+Biathlon,Men's 10km Sprint,Gold medal,FRA,France,FILLON MAILLET Quentin
+Biathlon,Men's 10km Sprint,Silver medal,NOR,Norway,CHRISTIANSEN Vetle Sjaastad
+Biathlon,Men's 10km Sprint,Bronze medal,NOR,Norway,LAEGREID Sturla Holm
+Biathlon,Women's 7.5km Sprint,Gold medal,NOR,Norway,KIRKEEIDE Maren
+Biathlon,Women's 7.5km Sprint,Silver medal,FRA,France,MICHELON Oceane
+Biathlon,Women's 7.5km Sprint,Bronze medal,FRA,France,JEANMONNOT Lou
+Biathlon,Men's 12.5km Pursuit,Gold medal,SWE,Sweden,PONSILUOMA Martin
+Biathlon,Men's 12.5km Pursuit,Silver medal,NOR,Norway,LAEGREID Sturla Holm
+Biathlon,Men's 12.5km Pursuit,Bronze medal,FRA,France,JACQUELIN Emilien
+Biathlon,Women's 10km Pursuit,Gold medal,ITA,Italy,VITTOZZI Lisa
+Biathlon,Women's 10km Pursuit,Silver medal,NOR,Norway,KIRKEEIDE Maren
+Biathlon,Women's 10km Pursuit,Bronze medal,FIN,Finland,MINKKINEN Suvi
+Biathlon,Men's 15km Mass Start,Gold medal,NOR,Norway,DALE-SKJEVDAL Johannes
+Biathlon,Men's 15km Mass Start,Silver medal,NOR,Norway,LAEGREID Sturla Holm
+Biathlon,Men's 15km Mass Start,Bronze medal,FRA,France,FILLON MAILLET Quentin
+Biathlon,Women's 12.5km Mass Start,Gold medal,FRA,France,MICHELON Oceane
+Biathlon,Women's 12.5km Mass Start,Silver medal,FRA,France,SIMON Julia
+Biathlon,Women's 12.5km Mass Start,Bronze medal,CZE,Czechia,VOBORNIKOVA Tereza
+Biathlon,Men's 4 x 7.5km Relay,Gold medal,FRA,France,France
+Biathlon,Men's 4 x 7.5km Relay,Silver medal,NOR,Norway,Norway
+Biathlon,Men's 4 x 7.5km Relay,Bronze medal,SWE,Sweden,Sweden
+Biathlon,Women's 4 x 6km Relay,Gold medal,FRA,France,France
+Biathlon,Women's 4 x 6km Relay,Silver medal,SWE,Sweden,Sweden
+Biathlon,Women's 4 x 6km Relay,Bronze medal,NOR,Norway,Norway
+Biathlon,Mixed Relay 4 x 6km (M+W),Gold medal,FRA,France,France
+Biathlon,Mixed Relay 4 x 6km (M+W),Silver medal,ITA,Italy,Italy
+Biathlon,Mixed Relay 4 x 6km (M+W),Bronze medal,GER,Germany,Germany
+Bobsleigh,2-man,Gold medal,GER,Germany,Germany
+Bobsleigh,2-man,Silver medal,GER,Germany,Germany
+Bobsleigh,2-man,Bronze medal,GER,Germany,Germany
+Bobsleigh,4-man,Gold medal,GER,Germany,Germany
+Bobsleigh,4-man,Silver medal,GER,Germany,Germany
+Bobsleigh,4-man,Bronze medal,SUI,Switzerland,Switzerland
+Bobsleigh,2-woman,Gold medal,GER,Germany,Germany
+Bobsleigh,2-woman,Silver medal,GER,Germany,Germany
+Bobsleigh,2-woman,Bronze medal,USA,United States,United States
+Bobsleigh,Women's Monobob,Gold medal,USA,United States,MEYERS TAYLOR Elana
+Bobsleigh,Women's Monobob,Silver medal,GER,Germany,NOLTE Laura
+Bobsleigh,Women's Monobob,Bronze medal,USA,United States,ARMBRUSTER HUMPHRIES Kaillie
+Cross-Country Skiing,Women's 10km Interval Start Free,Gold medal,SWE,Sweden,KARLSSON Frida
+Cross-Country Skiing,Women's 10km Interval Start Free,Silver medal,SWE,Sweden,ANDERSSON Ebba
+Cross-Country Skiing,Women's 10km Interval Start Free,Bronze medal,USA,United States,DIGGINS Jessie
+Cross-Country Skiing,Men's 10km Interval Start Free,Gold medal,NOR,Norway,KLAEBO Johannes Hoesflot
+Cross-Country Skiing,Men's 10km Interval Start Free,Silver medal,FRA,France,DESLOGES Mathis
+Cross-Country Skiing,Men's 10km Interval Start Free,Bronze medal,NOR,Norway,HEDEGART Einar
+Cross-Country Skiing,Women's 10km + 10km Skiathlon,Gold medal,SWE,Sweden,KARLSSON Frida
+Cross-Country Skiing,Women's 10km + 10km Skiathlon,Silver medal,SWE,Sweden,ANDERSSON Ebba
+Cross-Country Skiing,Women's 10km + 10km Skiathlon,Bronze medal,NOR,Norway,WENG Heidi
+Cross-Country Skiing,Men's 10km + 10km Skiathlon,Gold medal,NOR,Norway,KLAEBO Johannes Hoesflot
+Cross-Country Skiing,Men's 10km + 10km Skiathlon,Silver medal,FRA,France,DESLOGES Mathis
+Cross-Country Skiing,Men's 10km + 10km Skiathlon,Bronze medal,NOR,Norway,NYENGET Martin Loewstroem
+Cross-Country Skiing,Women's 4 x 7.5km Relay,Gold medal,NOR,Norway,Norway
+Cross-Country Skiing,Women's 4 x 7.5km Relay,Silver medal,SWE,Sweden,Sweden
+Cross-Country Skiing,Women's 4 x 7.5km Relay,Bronze medal,FIN,Finland,Finland
+Cross-Country Skiing,Men's 4 x 7.5km Relay,Gold medal,NOR,Norway,Norway
+Cross-Country Skiing,Men's 4 x 7.5km Relay,Silver medal,FRA,France,France
+Cross-Country Skiing,Men's 4 x 7.5km Relay,Bronze medal,ITA,Italy,Italy
+Cross-Country Skiing,Women's 50km Mass Start Classic,Gold medal,SWE,Sweden,ANDERSSON Ebba
+Cross-Country Skiing,Women's 50km Mass Start Classic,Silver medal,NOR,Norway,WENG Heidi
+Cross-Country Skiing,Women's 50km Mass Start Classic,Bronze medal,SUI,Switzerland,KAELIN Nadja
+Cross-Country Skiing,Men's 50km Mass Start Classic,Gold medal,NOR,Norway,KLAEBO Johannes Hoesflot
+Cross-Country Skiing,Men's 50km Mass Start Classic,Silver medal,NOR,Norway,NYENGET Martin Loewstroem
+Cross-Country Skiing,Men's 50km Mass Start Classic,Bronze medal,NOR,Norway,IVERSEN Emil
+Cross-Country Skiing,Women's Sprint Classic,Gold medal,SWE,Sweden,SVAHN Linn
+Cross-Country Skiing,Women's Sprint Classic,Silver medal,SWE,Sweden,SUNDLING Jonna
+Cross-Country Skiing,Women's Sprint Classic,Bronze medal,SWE,Sweden,DAHLQVIST Maja
+Cross-Country Skiing,Men's Sprint Classic,Gold medal,NOR,Norway,KLAEBO Johannes Hoesflot
+Cross-Country Skiing,Men's Sprint Classic,Silver medal,USA,United States,OGDEN Ben
+Cross-Country Skiing,Men's Sprint Classic,Bronze medal,NOR,Norway,VIKE Oskar Opstad
+Cross-Country Skiing,Women's Team Sprint Free,Gold medal,SWE,Sweden,Sweden
+Cross-Country Skiing,Women's Team Sprint Free,Silver medal,SUI,Switzerland,Switzerland
+Cross-Country Skiing,Women's Team Sprint Free,Bronze medal,GER,Germany,Germany
+Cross-Country Skiing,Men's Team Sprint Free,Gold medal,NOR,Norway,Norway
+Cross-Country Skiing,Men's Team Sprint Free,Silver medal,USA,United States,United States
+Cross-Country Skiing,Men's Team Sprint Free,Bronze medal,ITA,Italy,Italy
+Curling,Women,Gold medal,SWE,Sweden,Sweden
+Curling,Women,Silver medal,SUI,Switzerland,Switzerland
+Curling,Women,Bronze medal,CAN,Canada,Canada
+Curling,Men,Gold medal,CAN,Canada,Canada
+Curling,Men,Silver medal,GBR,Great Britain,Great Britain
+Curling,Men,Bronze medal,SUI,Switzerland,Switzerland
+Curling,Mixed Doubles,Gold medal,SWE,Sweden,Sweden
+Curling,Mixed Doubles,Silver medal,USA,United States,United States
+Curling,Mixed Doubles,Bronze medal,ITA,Italy,Italy
+Figure Skating,Men Single Skating,Gold medal,KAZ,Kazakhstan,SHAIDOROV Mikhail
+Figure Skating,Men Single Skating,Silver medal,JPN,Japan,KAGIYAMA Yuma
+Figure Skating,Men Single Skating,Bronze medal,JPN,Japan,SATO Shun
+Figure Skating,Women Single Skating,Gold medal,USA,United States,LIU Alysa
+Figure Skating,Women Single Skating,Silver medal,JPN,Japan,SAKAMOTO Kaori
+Figure Skating,Women Single Skating,Bronze medal,JPN,Japan,NAKAI Ami
+Figure Skating,Pair Skating,Gold medal,JPN,Japan,Japan
+Figure Skating,Pair Skating,Silver medal,GEO,Georgia,Georgia
+Figure Skating,Pair Skating,Bronze medal,GER,Germany,Germany
+Figure Skating,Ice Dance,Gold medal,FRA,France,France
+Figure Skating,Ice Dance,Silver medal,USA,United States,United States
+Figure Skating,Ice Dance,Bronze medal,CAN,Canada,Canada
+Figure Skating,Team Event,Gold medal,USA,United States,United States
+Figure Skating,Team Event,Silver medal,JPN,Japan,Japan
+Figure Skating,Team Event,Bronze medal,ITA,Italy,Italy
 Freestyle Skiing,Women's Moguls,Gold medal,USA,United States,LEMLEY Elizabeth
 Freestyle Skiing,Women's Moguls,Silver medal,USA,United States,KAUF Jaelin
 Freestyle Skiing,Women's Moguls,Bronze medal,FRA,France,LAFFONT Perrine
@@ -76,7 +179,36 @@ Freestyle Skiing,Women's Freeski Big Air,Bronze medal,ITA,Italy,TABANELLI Flora
 Freestyle Skiing,Men's Freeski Big Air,Gold medal,NOR,Norway,FROSTAD Tormod
 Freestyle Skiing,Men's Freeski Big Air,Silver medal,USA,United States,FOREHAND Mac
 Freestyle Skiing,Men's Freeski Big Air,Bronze medal,AUT,Austria,SVANCER Matej
-Unknown,Unknown,Gold medal,NED,Netherlands,VELZEBOER Xandra
+Ice Hockey,Men,Gold medal,USA,United States,United States
+Ice Hockey,Men,Silver medal,CAN,Canada,Canada
+Ice Hockey,Men,Bronze medal,FIN,Finland,Finland
+Ice Hockey,Women,Gold medal,USA,United States,United States
+Ice Hockey,Women,Silver medal,CAN,Canada,Canada
+Ice Hockey,Women,Bronze medal,SUI,Switzerland,Switzerland
+Luge,Men's Singles,Gold medal,GER,Germany,LANGENHAN Max
+Luge,Men's Singles,Silver medal,AUT,Austria,MUELLER Jonas
+Luge,Men's Singles,Bronze medal,ITA,Italy,FISCHNALLER Dominik
+Luge,Women's Singles,Gold medal,GER,Germany,TAUBITZ Julia
+Luge,Women's Singles,Silver medal,LAT,Latvia,BOTA Elina
+Luge,Women's Singles,Bronze medal,USA,United States,FARQUHARSON Ashley
+Luge,Men's Doubles,Gold medal,ITA,Italy,Italy
+Luge,Men's Doubles,Silver medal,AUT,Austria,Austria
+Luge,Men's Doubles,Bronze medal,GER,Germany,Germany
+Luge,Women's Doubles,Gold medal,ITA,Italy,Italy
+Luge,Women's Doubles,Silver medal,GER,Germany,Germany
+Luge,Women's Doubles,Bronze medal,AUT,Austria,Austria
+Luge,Team Relay,Gold medal,GER,Germany,Germany
+Luge,Team Relay,Silver medal,AUT,Austria,Austria
+Luge,Team Relay,Bronze medal,ITA,Italy,Italy
+Nordic Combined,Individual Gundersen Normal Hill/10km,Gold medal,NOR,Norway,OFTEBRO Jens Luraas
+Nordic Combined,Individual Gundersen Normal Hill/10km,Silver medal,AUT,Austria,LAMPARTER Johannes
+Nordic Combined,Individual Gundersen Normal Hill/10km,Bronze medal,FIN,Finland,HIRVONEN Eero
+Nordic Combined,Individual Gundersen Large Hill/10km,Gold medal,NOR,Norway,OFTEBRO Jens Luraas
+Nordic Combined,Individual Gundersen Large Hill/10km,Silver medal,AUT,Austria,LAMPARTER Johannes
+Nordic Combined,Individual Gundersen Large Hill/10km,Bronze medal,FIN,Finland,HEROLA Ilkka
+Nordic Combined,Team Sprint,Gold medal,NOR,Norway,Norway
+Nordic Combined,Team Sprint,Silver medal,FIN,Finland,Finland
+Nordic Combined,Team Sprint,Bronze medal,AUT,Austria,Austria
 Short Track Speed Skating,Women's 500m,Gold medal,NED,Netherlands,VELZEBOER Xandra
 Short Track Speed Skating,Women's 500m,Silver medal,ITA,Italy,FONTANA Arianna
 Short Track Speed Skating,Women's 500m,Bronze medal,CAN,Canada,SARAULT Courtney
@@ -104,7 +236,43 @@ Short Track Speed Skating,Men's 5000m Relay,Bronze medal,ITA,Italy,Italy
 Short Track Speed Skating,Mixed Team Relay,Gold medal,ITA,Italy,Italy
 Short Track Speed Skating,Mixed Team Relay,Silver medal,CAN,Canada,Canada
 Short Track Speed Skating,Mixed Team Relay,Bronze medal,BEL,Belgium,Belgium
-Unknown,Unknown,Gold medal,CZE,Czechia,MADEROVA Zuzana
+Skeleton,Men,Gold medal,GBR,Great Britain,WESTON Matt
+Skeleton,Men,Silver medal,GER,Germany,JUNGK Axel
+Skeleton,Men,Bronze medal,GER,Germany,GROTHEER Christopher
+Skeleton,Women,Gold medal,AUT,Austria,FLOCK Janine
+Skeleton,Women,Silver medal,GER,Germany,KREHER Susanne
+Skeleton,Women,Bronze medal,GER,Germany,PFEIFER Jacqueline
+Skeleton,Mixed Team,Gold medal,GBR,Great Britain,Great Britain
+Skeleton,Mixed Team,Silver medal,GER,Germany,Germany
+Skeleton,Mixed Team,Bronze medal,GER,Germany,Germany
+Ski Jumping,Women's NH Individual,Gold medal,NOR,Norway,STROEM Anna Odine
+Ski Jumping,Women's NH Individual,Silver medal,SLO,Slovenia,PREVC Nika
+Ski Jumping,Women's NH Individual,Bronze medal,JPN,Japan,MARUYAMA Nozomi
+Ski Jumping,Women's LH Individual,Gold medal,NOR,Norway,STROEM Anna Odine
+Ski Jumping,Women's LH Individual,Silver medal,NOR,Norway,KVANDAL Eirin Maria
+Ski Jumping,Women's LH Individual,Bronze medal,SLO,Slovenia,PREVC Nika
+Ski Jumping,Men's NH Individual,Gold medal,GER,Germany,RAIMUND Philipp
+Ski Jumping,Men's NH Individual,Silver medal,POL,Poland,TOMASIAK Kacper
+Ski Jumping,Men's NH Individual,Bronze medal,SUI,Switzerland,DESCHWANDEN Gregor
+Ski Jumping,Men's NH Individual,Bronze medal,JPN,Japan,NIKAIDO Ren
+Ski Jumping,Men's LH Individual,Gold medal,SLO,Slovenia,PREVC Domen
+Ski Jumping,Men's LH Individual,Silver medal,JPN,Japan,NIKAIDO Ren
+Ski Jumping,Men's LH Individual,Bronze medal,POL,Poland,TOMASIAK Kacper
+Ski Jumping,Men's Super Team,Gold medal,AUT,Austria,Austria
+Ski Jumping,Men's Super Team,Silver medal,POL,Poland,Poland
+Ski Jumping,Men's Super Team,Bronze medal,NOR,Norway,Norway
+Ski Jumping,Mixed Team,Gold medal,SLO,Slovenia,Slovenia
+Ski Jumping,Mixed Team,Silver medal,NOR,Norway,Norway
+Ski Jumping,Mixed Team,Bronze medal,JPN,Japan,Japan
+Ski Mountaineering,Women's Sprint,Gold medal,SUI,Switzerland,FATTON Marianne
+Ski Mountaineering,Women's Sprint,Silver medal,FRA,France,HARROP Emily
+Ski Mountaineering,Women's Sprint,Bronze medal,ESP,Spain,ALONSO RODRIGUEZ Ana
+Ski Mountaineering,Men's Sprint,Gold medal,ESP,Spain,CARDONA COLL Oriol
+Ski Mountaineering,Men's Sprint,Silver medal,AIN,AIN,FILIPPOV Nikita
+Ski Mountaineering,Men's Sprint,Bronze medal,FRA,France,ANSELMET Thibault
+Ski Mountaineering,Mixed Relay,Gold medal,FRA,France,France
+Ski Mountaineering,Mixed Relay,Silver medal,SUI,Switzerland,Switzerland
+Ski Mountaineering,Mixed Relay,Bronze medal,ESP,Spain,Spain
 Snowboard,Women's Parallel Giant Slalom,Gold medal,CZE,Czechia,MADEROVA Zuzana
 Snowboard,Women's Parallel Giant Slalom,Silver medal,AUT,Austria,PAYER Sabine
 Snowboard,Women's Parallel Giant Slalom,Bronze medal,ITA,Italy,DALMASSO Lucia
@@ -138,3 +306,45 @@ Snowboard,Women's Snowboard Big Air,Bronze medal,KOR,Korea,YU Seungeun
 Snowboard,Men's Snowboard Big Air,Gold medal,JPN,Japan,KIMURA Kira
 Snowboard,Men's Snowboard Big Air,Silver medal,JPN,Japan,KIMATA Ryoma
 Snowboard,Men's Snowboard Big Air,Bronze medal,CHN,China,SU Yiming
+Speed Skating,Women's 500m,Gold medal,NED,Netherlands,KOK Femke
+Speed Skating,Women's 500m,Silver medal,NED,Netherlands,LEERDAM Jutta
+Speed Skating,Women's 500m,Bronze medal,JPN,Japan,TAKAGI Miho
+Speed Skating,Women's 1000m,Gold medal,NED,Netherlands,LEERDAM Jutta
+Speed Skating,Women's 1000m,Silver medal,NED,Netherlands,KOK Femke
+Speed Skating,Women's 1000m,Bronze medal,JPN,Japan,TAKAGI Miho
+Speed Skating,Women's 1500m,Gold medal,NED,Netherlands,RIJPMA-de JONG Antoinette
+Speed Skating,Women's 1500m,Silver medal,NOR,Norway,WIKLUND Ragne
+Speed Skating,Women's 1500m,Bronze medal,CAN,Canada,MALTAIS Valerie
+Speed Skating,Women's 3000m,Gold medal,ITA,Italy,LOLLOBRIGIDA Francesca
+Speed Skating,Women's 3000m,Silver medal,NOR,Norway,WIKLUND Ragne
+Speed Skating,Women's 3000m,Bronze medal,CAN,Canada,MALTAIS Valerie
+Speed Skating,Women's 5000m,Gold medal,ITA,Italy,LOLLOBRIGIDA Francesca
+Speed Skating,Women's 5000m,Silver medal,NED,Netherlands,CONIJN Merel
+Speed Skating,Women's 5000m,Bronze medal,NOR,Norway,WIKLUND Ragne
+Speed Skating,Women's Mass Start,Gold medal,NED,Netherlands,GROENEWOUD Marijke
+Speed Skating,Women's Mass Start,Silver medal,CAN,Canada,BLONDIN Ivanie
+Speed Skating,Women's Mass Start,Bronze medal,USA,United States,MANGANELLO Mia
+Speed Skating,Women's Team Pursuit,Gold medal,CAN,Canada,Canada
+Speed Skating,Women's Team Pursuit,Silver medal,NED,Netherlands,Netherlands
+Speed Skating,Women's Team Pursuit,Bronze medal,JPN,Japan,Japan
+Speed Skating,Men's 500m,Gold medal,USA,United States,STOLZ Jordan
+Speed Skating,Men's 500m,Silver medal,NED,Netherlands,de BOO Jenning
+Speed Skating,Men's 500m,Bronze medal,CAN,Canada,DUBREUIL Laurent
+Speed Skating,Men's 1000m,Gold medal,USA,United States,STOLZ Jordan
+Speed Skating,Men's 1000m,Silver medal,NED,Netherlands,de BOO Jenning
+Speed Skating,Men's 1000m,Bronze medal,CHN,China,NING Zhongyan
+Speed Skating,Men's 1500m,Gold medal,CHN,China,NING Zhongyan
+Speed Skating,Men's 1500m,Silver medal,USA,United States,STOLZ Jordan
+Speed Skating,Men's 1500m,Bronze medal,NED,Netherlands,NUIS Kjeld
+Speed Skating,Men's 5000m,Gold medal,NOR,Norway,EITREM Sander
+Speed Skating,Men's 5000m,Silver medal,CZE,Czechia,JILEK Metodej
+Speed Skating,Men's 5000m,Bronze medal,ITA,Italy,LORELLO Riccardo
+Speed Skating,Men's 10000m,Gold medal,CZE,Czechia,JILEK Metodej
+Speed Skating,Men's 10000m,Silver medal,POL,Poland,SEMIRUNNIY Vladimir
+Speed Skating,Men's 10000m,Bronze medal,NED,Netherlands,BERGSMA Jorrit
+Speed Skating,Men's Mass Start,Gold medal,NED,Netherlands,BERGSMA Jorrit
+Speed Skating,Men's Mass Start,Silver medal,DEN,Denmark,THORUP Viktor Hald
+Speed Skating,Men's Mass Start,Bronze medal,ITA,Italy,GIOVANNINI Andrea
+Speed Skating,Men's Team Pursuit,Gold medal,ITA,Italy,Italy
+Speed Skating,Men's Team Pursuit,Silver medal,USA,United States,United States
+Speed Skating,Men's Team Pursuit,Bronze medal,CHN,China,China
