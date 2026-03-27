@@ -4,8 +4,8 @@ import pandas as pd
 import time
 import random
 
-CSV_PATH = "olympedia_winter_games_numbering.csv"
-OUTPUT_PATH = "olympedia_medals_all.csv"
+CSV_PATH = "../Data_raw/olympedia_winter_games_numbering.csv"
+OUTPUT_PATH = "../Data_raw/olympedia_medals_all.csv"
 
 games = pd.read_csv(CSV_PATH)
 
