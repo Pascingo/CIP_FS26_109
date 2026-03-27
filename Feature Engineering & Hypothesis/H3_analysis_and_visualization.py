@@ -8,6 +8,10 @@ import pandas as pd
 import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+from pathlib import Path
+
+
 
 
 def prepare_analysis_metrics(df: pd.DataFrame) -> pd.DataFrame:
@@ -60,36 +64,35 @@ def run_regression(df: pd.DataFrame):
     return model
 
 
-def create_visualizations(df: pd.DataFrame):
+def create_visualizations(df: pd.DataFrame, output_path: Path):
     """
-    Generates plots using seaborn and matplotlib to visualize the spillover effect.
+    Generates plots using seaborn and matplotlib and saves them to output_path.
     """
     print("\nGenerating visualizations...")
 
     # Set the aesthetic style of the plots
     sns.set_theme(style="whitegrid")
 
-    # Filter out the Host countries for the plot to isolate the "Neighbour" effect clearly
-    # We want to compare strictly: Neighbours vs. Non-Neighbours (who are not the host)
+    # Filter out the Host countries to isolate the "Neighbour" effect
     df_plot = df[df['Is_Host'] == 0]
 
     # Create a figure with two subplots
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
     fig.suptitle('Spillover Effect: Geographic Proximity on Olympic Medal Share', fontsize=16)
 
-    # Plot 1: Boxplot comparing Medal Share distribution
+    # Plot 1: Boxplot
     sns.boxplot(
         ax=axes[0],
         x='Is_Host_Neighbour',
         y='Medal_Share',
         data=df_plot,
-        palette="Set2"
+        hue='Is_Host_Neighbour',
+        palette="Set2",
+        legend=False
     )
     axes[0].set_title('Medal Share Distribution (Neighbour vs. Non-Neighbour)')
-    axes[0].set_xlabel('Is Neighbour to Host (0 = No, 1 = Yes)')
-    axes[0].set_ylabel('Medal Share')
 
-    # Plot 2: Scatterplot showing Baseline vs. Actual Share, colored by Neighbour status
+    # Plot 2: Scatterplot
     sns.scatterplot(
         ax=axes[1],
         x='Historical_Baseline',
@@ -100,30 +103,40 @@ def create_visualizations(df: pd.DataFrame):
         palette="Set1"
     )
 
-    # Add a 45-degree reference line (where current share equals past share)
+    # 45-degree reference line
     max_val = max(df_plot['Medal_Share'].max(), df_plot['Historical_Baseline'].max())
     axes[1].plot([0, max_val], [0, max_val], color='black', linestyle='--', linewidth=1)
 
     axes[1].set_title('Current Performance vs. Historical Baseline')
-    axes[1].set_xlabel('Historical Baseline (Medal Share at Previous Games)')
-    axes[1].set_ylabel('Current Medal Share')
 
     plt.tight_layout()
-    plt.savefig("spillover_effect_analysis.png", dpi=300)
-    print("Plot saved successfully as 'spillover_effect_analysis.png'.")
+
+    # Check path logic
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    plt.savefig(output_path, dpi=300)
+    print(f"Plot saved successfully at: {output_path}")
     plt.show()
 
 
 if __name__ == "__main__":
-    # Load the integrated dataset
-    input_file = "../Data_clean/winter_olympics_analysis_ready.csv"
-    try:
-        df_master = pd.read_csv(input_file)
+    # Konsistente Pfadbehandlung mit Pathlib
+    current_script_dir = Path(__file__).resolve().parent
+    base_project_dir = current_script_dir.parent
 
-        # Execute the pipeline
+    input_file = base_project_dir / "Data_clean" / "winter_olympics_analysis_ready.csv"
+    output_image = base_project_dir / "Visualisations" / "spillover_effect_analysis.png"
+
+    try:
+        # Laden der Daten
+        df_master = pd.read_csv(input_file)
+        print(f"File found: {input_file.name}")
+
+        # Pipeline
         df_prepared = prepare_analysis_metrics(df_master)
         regression_model = run_regression(df_prepared)
-        create_visualizations(df_prepared)
+        create_visualizations(df_prepared, output_image)
 
     except FileNotFoundError:
-        print(f"Error: Could not find '{input_file}'. Please run the integration script first.")
+        print(f"Error: Could not find the file at {input_file}")
+        print("Check if the integration script successfully created the CSV in 'Data_clean'.")
