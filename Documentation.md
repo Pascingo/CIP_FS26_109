@@ -32,7 +32,8 @@ Data Types and Missing Values: Columns were cast to their appropriate numeric da
 
 Data Enrichment: We enriched the dataset by merging the historical medal data with host information and dynamically calculating boolean columns such as Is_Host and Is_Host_Neighbour to support our analysis
 
-### Analysis
+### Presentation
+Each group member decided for himself to choose a presentation framework with which he liked to work with. H3 was using Seaborn for the Boxplot and Matplotlib for the Scatterplot.
 
 ## Discussion
 
@@ -106,4 +107,4 @@ Based on both the statistical and spatial analysis, the research question can be
 
 ### Limitations
 
-### Outlook
+### Outlook & Further Steps
