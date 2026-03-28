@@ -1,0 +1,29 @@
+==================================================
+--- DIFFERENCE-IN-DIFFERENCES ANALYSIS (OLS) ---
+==================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              Medal_Share R-squared:                       0.525
+Model:                            OLS   Adj. R-squared:                  0.464
+Method:                 Least Squares   F-statistic:                     57.94
+Date:                Sat, 28 Mar 2026   Prob (F-statistic):           3.47e-28
+Time:                        16:55:06   Log-Likelihood:                 962.21
+No. Observations:                 663     AIC:                           -1772
+Df Residuals:                     587     BIC:                           -1431
+Df Model:                          75                                         
+Covariance Type:               cluster                                        
+==============================================================================
+                                   coef    std err          z      P>|z|     
+------------------------------------------------------------------------------
+Intercept                           0.0636      0.037      1.719      0.086
+is_host                             0.0250      0.012      2.145      0.032
+is_host:subjective                  0.0134      0.016      0.860      0.390
+==============================================================================
+Notes:
+[1] Country and year fixed effects included.
+[2] Standard errors clustered at the country (NOC) level.
+[3] Objective sports are the baseline category.
+[4] is_host captures the host advantage in objective sports.
+[5] is_host:subjective captures the incremental host advantage
+    in subjectively judged sports relative to objective sports.
+==============================================================================
