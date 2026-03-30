@@ -32,6 +32,8 @@ Data Types and Missing Values: Columns were cast to their appropriate numeric da
 
 Data Enrichment: We enriched the dataset by merging the historical medal data with host information and dynamically calculating boolean columns such as Is_Host and Is_Host_Neighbour to support our analysis
 
+The Medal Ranking had some issues, when two countries shared a rank, one got the number, the other was at 0. As we didn't need to use the ranks, we decided to rather delete the whole column, than to repare the ranking.
+
 ### Presentation
 Each group member decided for himself to choose a presentation framework with which he liked to work with. H3 was using Seaborn for the Boxplot and Matplotlib for the Scatterplot.
 
