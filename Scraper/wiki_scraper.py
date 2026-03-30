@@ -75,6 +75,6 @@ if all_dfs:
     print(master_df.head())
 
     # Save file locally
-    master_df.to_csv("winter_olympics_medals_master.csv", index=False)
+    master_df.to_csv("raw_data_winter_olympics_medals_master.csv", index=False)
 else:
     print("Es konnten keine Daten gesammelt werden.")
