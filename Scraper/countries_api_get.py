@@ -32,7 +32,7 @@ for country in countries:
     })
 
 # Write the result to a JSON file
-with open("../Data_raw/countries_neighbors.json", "w", encoding="utf-8") as f:
+with open("../Data_raw/raw_countries_neighbors.json", "w", encoding="utf-8") as f:
     json.dump(result, f, indent=2, ensure_ascii=False)
 
-print("Export completed: countries_neighbors.json")
+print("Export completed: raw_countries_neighbors.json")
