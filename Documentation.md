@@ -32,6 +32,8 @@ Data Types and Missing Values: Columns were cast to their appropriate numeric da
 
 Data Enrichment: We enriched the dataset by merging the historical medal data with host information and dynamically calculating boolean columns such as Is_Host and Is_Host_Neighbour to support our analysis
 
+The Medal Ranking had some issues, when two countries shared a rank, one got the number, the other was at 0. As we didn't need to use the ranks, we decided to rather delete the whole column, than to repare the ranking.
+
 ### Presentation
 Each group member decided for himself to choose a presentation framework with which he liked to work with. H3 was using Seaborn for the Boxplot and Matplotlib for the Scatterplot.
 
@@ -40,6 +42,112 @@ Each group member decided for himself to choose a presentation framework with wh
 ### Hypothesis 1
 
 ### Hypothesis 2
+**Can we determine a difference in the effects of being the host of the events when comparing subjective and objective sports?**
+
+#### Identification Strategy
+We estimate the effect of hosting the Olympic Games on medal performance using a difference‑in‑differences–style research design implemented via fixed‑effects linear regression. Identification comes from comparing host and non‑host countries within the same Olympic Games, exploiting the fact that each Games features one treated unit (the host country) and many control units (non‑hosts). Repeating this comparison across Olympic years allows us to identify the average host‑country advantage while controlling for time‑invariant country characteristics and common Olympic‑year shocks.
+Although the model is estimated using ordinary least squares, the identifying variation corresponds to a DiD logic: the coefficient of interest captures systematic differences between host and non‑host countries within a given Games, net of country and year fixed effects. Regression provides a flexible framework that allows us to incorporate fixed effects and conduct inference with clustered standard errors.
+
+#### Heterogeneity by Judging Type
+To examine whether host‑country advantages differ by the nature of performance evaluation, we allow the host effect to vary between subjectively judged sports and objectively scored sports. Objectively scored sports (e.g., time‑ or distance‑based events) serve as the baseline category.
+Formally, we estimate regressions of the form:
+Ycts=β1 Hostct+β2 Subjectives+β3(Hostct×Subjectives)+αc+λt+εcts,Y_{c t s}
+=
+\beta_1\,\text{Host}_{c t}
++
+\beta_2\,\text{Subjective}_{s}
++
+\beta_3(\text{Host}_{c t} \times \text{Subjective}_{s})
++
+\alpha_c
++
+\lambda_t
++
+\varepsilon_{c t s},Ycts​=β1​Hostct​+β2​Subjectives​+β3​(Hostct​×Subjectives​)+αc​+λt​+εcts​,
+where YctsY_{c t s}Ycts​ denotes country ccc’s medal share in year ttt and sport category sss. αc\alpha_cαc​ and λt\lambda_tλt​ denote country and year fixed effects. The coefficient β1\beta_1β1​ captures the host advantage in objectively scored sports, while β3\beta_3β3​ captures whether this host advantage is incrementally larger in subjectively judged sports relative to objective sports.
+
+#### Main Results
+The estimates reveal a statistically significant host‑country advantage in objectively scored sports. Hosting the Olympic Games increases a country’s medal share in objective events by approximately 1.3 percentage points, a magnitude that is both statistically significant and economically meaningful. This finding is consistent with existing evidence of a general host‑country advantage operating through mechanisms such as increased participation, familiarity with venues, or logistical advantages.
+However, we find no evidence that this host‑country advantage is systematically larger in subjectively judged sports. The interaction between host status and subjective judging is positive but statistically indistinguishable from zero. This implies that, while hosting improves medal performance overall, subjectively judged sports do not exhibit an additional host‑specific boost relative to objectively scored sports.
+Taken together, the estimates indicate that the host‑country effect is present across the Olympic program but does not appear to be driven by differential treatment or bias in judged events.
+
+#### Fixed Effects and Inference
+Country fixed effects absorb all time‑invariant differences across countries (e.g., long‑run sports institutions, population size, or historical sporting strength), while year fixed effects capture shocks common to all countries in a given Olympic Games (e.g., changes in the event program or scoring rules). Standard errors are clustered at the country level to allow for arbitrary serial correlation in medal outcomes within countries over time.
+
+#### Event‑Study Diagnostics
+To assess the plausibility of the identifying assumptions and to explore the dynamics of host effects, we estimate a stacked event‑study specification that traces medal outcomes across Olympic cycles relative to the host year. This approach allows us to test for differential pre‑trends and to examine whether host effects persist beyond the host Games.
+The event‑study estimates show no evidence of differential pre‑trends between future host and non‑host countries in subjectively judged sports prior to hosting, lending support to the identifying assumptions of the main specification. In the host year itself, countries experience a pronounced and statistically significant increase in medal share, driven primarily by objectively scored sports.
+Crucially, the event‑study reveals no statistically significant incremental host effect in subjectively judged sports either in the host year or in subsequent Olympic cycles. Post‑host estimates remain small and imprecise, suggesting that any potential judging‑related advantages are neither large nor persistent.
+
+#### Interpretation
+Overall, the results indicate that hosting the Olympic Games confers a clear performance advantage, but this advantage does not differ meaningfully between subjectively judged and objectively measured sports. These findings suggest that the host‑country effect operates primarily through structural or institutional channels rather than through systematic bias in subjective evaluation. While concerns about judging discretion are often raised in public discourse, our evidence does not support the presence of a differential host advantage in judged events.
+
+==================================================
+--- DIFFERENCE-IN-DIFFERENCES ANALYSIS (OLS) ---
+==================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              Medal_Share   R-squared:                       0.525
+Model:                            OLS   Adj. R-squared:                  0.464
+Method:                 Least Squares   F-statistic:                     56.69
+Date:                Sat, 28 Mar 2026   Prob (F-statistic):           5.73e-28
+Time:                        15:44:16   Log-Likelihood:                 962.21
+No. Observations:                 663   AIC:                           -1772.
+Df Residuals:                     587   BIC:                           -1431.
+Df Model:                          75                                         
+Covariance Type:               cluster                                         
+==============================================================================
+                                   coef    std err          z      P>|z|     
+------------------------------------------------------------------------------
+Intercept                        0.0318      0.019      1.713      0.087
+is_host                          0.0125      0.006      2.138      0.033
+is_host:subjective               0.0067      0.008      0.857      0.392
+==============================================================================
+Notes:
+[1] Country and year fixed effects included.
+[2] Standard errors clustered at the country (NOC) level.
+[3] Objective sports are the baseline category.
+[4] is_host captures the host advantage in objective sports.
+[5] is_host:subjective captures the incremental host advantage
+    in subjectively judged sports relative to objective sports.
+==============================================================================
+
+
+==================================================
+--- EVENT-STUDY ANALYSIS (STACKED DiD, OLS) ---
+==================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              Medal_Share   R-squared:                       0.527
+Model:                            OLS   Adj. R-squared:                  0.516
+Method:                 Least Squares   F-statistic:                 2.73e+08
+Date:                Sat, 28 Mar 2026   Prob (F-statistic):          7.72e-190
+Time:                        15:44:16   Log-Likelihood:                6013.8
+No. Observations:                4135   AIC:                        -11830.
+Df Residuals:                    4035   BIC:                        -11190.
+Df Model:                          99                                         
+Covariance Type:               cluster                                         
+==============================================================================
+                                   coef    std err          z      P>|z|     
+------------------------------------------------------------------------------
+is_host_event:C(k)[T.0]          0.0400      0.018      2.200      0.028
+
+is_host_event:C(k)[T.-3]:subj    0.0018      0.030      0.059      0.953
+is_host_event:C(k)[T.-2]:subj   -0.0097      0.032     -0.300      0.764
+is_host_event:C(k)[T.0]:subj     0.0029      0.037      0.079      0.937
+is_host_event:C(k)[T.1]:subj     0.0381      0.022      1.734      0.083
+is_host_event:C(k)[T.2]:subj     0.0372      0.027      1.352      0.176
+is_host_event:C(k)[T.3]:subj     0.0278      0.017      1.627      0.104
+==============================================================================
+Notes:
+[1] Event time k measured in Olympic cycles relative to host year.
+[2] Reference period: k = -1.
+[3] Coefficients with suffix ':subj' denote incremental host effects
+    in subjectively judged sports relative to objectively scored sports.
+[4] Country and year fixed effects included.
+[5] Standard errors clustered at the country (NOC) level.
+==============================================================================
+
 
 ### Hypothesis 3
 **Is there a correlation between being neighbor or being host and the medals won?**

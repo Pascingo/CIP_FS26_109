@@ -1,0 +1,134 @@
+Sport,Event,category
+Alpinism,"Alpinism, Open",objective
+Bobsleigh,"Four, Men",objective
+Cross Country Skiing,"18 kilometres, Men",objective
+Cross Country Skiing,"50 kilometres, Men",objective
+Curling,"Team, Men",objective
+Figure Skating,"Singles, Men",subjective
+Figure Skating,"Singles, Women",subjective
+Figure Skating,"Pairs, Mixed",subjective
+Ice Hockey,"Ice Hockey, Men",objective
+Military Ski Patrol,"Military Ski Patrol, Men",objective
+Nordic Combined,"Individual, Men",mixed
+Ski Jumping,"Large Hill, Individual, Men",mixed
+Speed Skating,"500 metres, Men",objective
+Speed Skating,"1,500 metres, Men",objective
+Speed Skating,"5,000 metres, Men",objective
+Speed Skating,"10,000 metres, Men",objective
+Speed Skating,"Allround, Men",objective
+Skeleton,"Skeleton, Men",objective
+Bobsleigh,"Two, Men",objective
+Alpine Skiing,"Combined, Men",objective
+Alpine Skiing,"Combined, Women",objective
+Cross Country Skiing,"Relay, Men",objective
+Alpine Skiing,"Downhill, Men",objective
+Alpine Skiing,"Slalom, Men",objective
+Alpine Skiing,"Downhill, Women",objective
+Alpine Skiing,"Slalom, Women",objective
+Alpine Skiing,"Giant Slalom, Men",objective
+Alpine Skiing,"Giant Slalom, Women",objective
+Cross Country Skiing,"10 kilometres, Women",objective
+Cross Country Skiing,"15 kilometres, Men",objective
+Cross Country Skiing,"30 kilometres, Men",objective
+Cross Country Skiing,"Relay, Women",objective
+Biathlon,"Individual, Men",objective
+Speed Skating,"500 metres, Women",objective
+Speed Skating,"1,000 metres, Women",objective
+Speed Skating,"1,500 metres, Women",objective
+Speed Skating,"3,000 metres, Women",objective
+Cross Country Skiing,"5 kilometres, Women",objective
+Luge,"Singles, Men",objective
+Luge,"Doubles, Men",objective
+Luge,"Singles, Women",objective
+Ski Jumping,"Normal Hill, Individual, Men",mixed
+Biathlon,"Relay, Men",objective
+Figure Skating,"Ice Dance, Mixed",subjective
+Speed Skating,"1,000 metres, Men",objective
+Biathlon,"Sprint, Men",objective
+Cross Country Skiing,"20 kilometres, Women",objective
+Alpine Skiing,"Super G, Men",objective
+Alpine Skiing,"Super G, Women",objective
+Nordic Combined,"Team, Men",mixed
+Ski Jumping,"Large Hill, Team, Men",mixed
+Speed Skating,"5,000 metres, Women",objective
+Biathlon,"Sprint, Women",objective
+Biathlon,"Individual, Women",objective
+Biathlon,"Relay, Women",objective
+Cross Country Skiing,"10 kilometres, Men",objective
+Cross Country Skiing,"Skiathlon, Men",objective
+Cross Country Skiing,"15 kilometres, Women",objective
+Cross Country Skiing,"30 kilometres, Women",objective
+Cross Country Skiing,"Skiathlon, Women",objective
+Freestyle Skiing,"Moguls, Men",subjective
+Freestyle Skiing,"Moguls, Women",subjective
+Short Track Speed Skating,"1,000 metres, Men",objective
+Short Track Speed Skating,"Relay, Men",objective
+Short Track Speed Skating,"500 metres, Women",objective
+Short Track Speed Skating,"Relay, Women",objective
+Freestyle Skiing,"Aerials, Men",subjective
+Freestyle Skiing,"Aerials, Women",subjective
+Short Track Speed Skating,"500 metres, Men",objective
+Short Track Speed Skating,"1,000 metres, Women",objective
+Curling,"Team, Women",objective
+Ice Hockey,"Ice Hockey, Women",objective
+Snowboarding,"Giant Slalom, Men",subjective
+Snowboarding,"Halfpipe, Men",subjective
+Snowboarding,"Giant Slalom, Women",subjective
+Snowboarding,"Halfpipe, Women",subjective
+Biathlon,"Pursuit, Men",objective
+Biathlon,"Pursuit, Women",objective
+Bobsleigh,"Two, Women",objective
+Cross Country Skiing,"Sprint, Men",objective
+Cross Country Skiing,"Sprint, Women",objective
+Nordic Combined,"Sprint, Men",mixed
+Short Track Speed Skating,"1,500 metres, Men",objective
+Short Track Speed Skating,"1,500 metres, Women",objective
+Skeleton,"Skeleton, Women",objective
+Snowboarding,"Parallel Giant Slalom, Men",subjective
+Snowboarding,"Parallel Giant Slalom, Women",subjective
+Biathlon,"Mass Start, Men",objective
+Biathlon,"Mass Start, Women",objective
+Cross Country Skiing,"Team Sprint, Men",objective
+Cross Country Skiing,"Team Sprint, Women",objective
+Snowboarding,"Cross, Men",subjective
+Snowboarding,"Cross, Women",subjective
+Speed Skating,"Team Pursuit (8 laps), Men",objective
+Speed Skating,"Team Pursuit (6 laps), Women",objective
+Freestyle Skiing,"Ski Cross, Men",subjective
+Freestyle Skiing,"Ski Cross, Women",subjective
+Biathlon,"Relay, Mixed",objective
+Figure Skating,"Team, Mixed",subjective
+Freestyle Skiing,"Halfpipe, Men",subjective
+Freestyle Skiing,"Slopestyle, Men",subjective
+Freestyle Skiing,"Halfpipe, Women",subjective
+Freestyle Skiing,"Slopestyle, Women",subjective
+Luge,"Team Relay, Mixed",objective
+Ski Jumping,"Normal Hill, Individual, Women",mixed
+Snowboarding,"Parallel Slalom, Men",subjective
+Snowboarding,"Slopestyle, Men",subjective
+Snowboarding,"Parallel Slalom, Women",subjective
+Snowboarding,"Slopestyle, Women",subjective
+Alpine Skiing,"Team, Mixed",objective
+Curling,"Doubles, Mixed",objective
+Snowboarding,"Big Air, Men",subjective
+Snowboarding,"Big Air, Women",subjective
+Speed Skating,"Mass Start, Men",objective
+Speed Skating,"Mass Start, Women",objective
+Bobsleigh,"Monobob, Women",objective
+Freestyle Skiing,"Big Air, Men",subjective
+Freestyle Skiing,"Big Air, Women",subjective
+Freestyle Skiing,"Team Aerials, Mixed",subjective
+Short Track Speed Skating,"Relay, Mixed",objective
+Ski Jumping,"Normal Hill, Team, Mixed",mixed
+Snowboarding,"Team Cross, Mixed",subjective
+Alpine Skiing,"Team Combined, Men",objective
+Alpine Skiing,"Combined, Team, Women",objective
+Cross Country Skiing,"50 kilometres, Women",objective
+Freestyle Skiing,"Dual Moguls, Men",subjective
+Freestyle Skiing,"Dual Moguls, Women",subjective
+Luge,"Doubles, Women",objective
+Skeleton,"Team, Mixed",objective
+Ski Jumping,"Large Hill, Individual, Women",mixed
+Ski Mountaineering,"Sprint, Men",objective
+Ski Mountaineering,"Sprint, Women",objective
+Ski Mountaineering,"Relay, Mixed",objective

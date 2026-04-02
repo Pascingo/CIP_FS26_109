@@ -1,0 +1,34 @@
+==================================================
+--- EVENT-STUDY ANALYSIS (STACKED DiD, OLS) ---
+==================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              Medal_Share R-squared:                       0.527
+Model:                            OLS   Adj. R-squared:                  0.516
+Method:                 Least Squares    F-statistic:                 2.73e+08
+Date:                Sat, 28 Mar 2026   Prob (F-statistic):          7.72e-190
+Time:                        16:55:06    Log-Likelihood:                6013.8
+No. Observations:                4135       AIC:                        -11828
+Df Residuals:                    4035       BIC:                        -11195
+Df Model:                          99                                         
+Covariance Type:               cluster                                        
+==============================================================================
+                                   coef    std err          z      P>|z|     
+------------------------------------------------------------------------------
+is_host_event:C(k)[T.0]             0.0400      0.018      2.200      0.028
+
+is_host_event:C(k)[T.-3]:subj       0.0018      0.030      0.059      0.953
+is_host_event:C(k)[T.-2]:subj      -0.0097      0.032     -0.300      0.764
+is_host_event:C(k)[T.0]:subj        0.0029      0.037      0.079      0.937
+is_host_event:C(k)[T.1]:subj        0.0381      0.022      1.734      0.083
+is_host_event:C(k)[T.2]:subj        0.0372      0.027      1.352      0.176
+is_host_event:C(k)[T.3]:subj        0.0278      0.017      1.627      0.104
+==============================================================================
+Notes:
+[1] Event time k measured in Olympic cycles relative to host year.
+[2] Reference period: k = -1.
+[3] Coefficients with suffix ' :subj' denote incremental host effects
+    in subjectively judged sports relative to objectively scored sports.
+[4] Country and year fixed effects included.
+[5] Standard errors clustered at the country (NOC) level.
+==============================================================================

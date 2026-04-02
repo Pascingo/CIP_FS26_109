@@ -293,7 +293,7 @@ if __name__ == "__main__":
     if df_results is not None and not df_results.empty:
         # Extrahiert "milano-cortina-2026" für einen sauberen Dateinamen
         game_slug = target_url.split('/')[4]
-        csv_filename = f"olympics_medals_raw_{game_slug}.csv"
+        csv_filename = f"raw_data_olympics_medals_{game_slug}.csv"
 
         df_results.to_csv(csv_filename, index=False, encoding='utf-8')
 
