@@ -139,11 +139,11 @@ if __name__ == "__main__":
     # ---------------------------------------------------------
     # Configuration / File Paths
     # ---------------------------------------------------------
-    RAW_HOSTS_FILE = "../Data_raw/winter_olympics_hosts_raw.csv"
-    INTEGRATED_HOSTS_FILE = "../Data_raw/winter_olympics_hosts_integrated.csv"
-    CLEAN_MEDALS_FILE = "../Data_clean/winter_olympics_medals_clean.csv"
-    NEIGHBORS_JSON_FILE = "../Data_raw/countries_neighbors.json"
-    FINAL_ANALYSIS_FILE = "../Data_clean/winter_olympics_analysis_ready.csv"
+    RAW_HOSTS_FILE = "../Data_raw/raw_wikipedia_hosts.csv"
+    INTEGRATED_HOSTS_FILE = "../Data_clean/clean_wikipedia_hosts.csv"
+    CLEAN_MEDALS_FILE = "../Data_clean/clean_wikipedia_medals.csv"
+    NEIGHBORS_JSON_FILE = "../Data_raw/raw_restcountries_api.json"
+    FINAL_ANALYSIS_FILE = "../Data_clean/clean_wikipedia_medals_features.csv"
 
     # ---------------------------------------------------------
     # Execution Pipeline

@@ -30,11 +30,11 @@ This repository contains the code and data for our group project in the **CIP** 
 
 | Script | Method | Output |
 |---|---|---|
-| `wiki_scraper.py` | Static scraping (`requests`, `BeautifulSoup`) | `winter_olympics_medals_master.csv` |
-| `wikipedia_hostcountries_scraper.py` | Static scraping with custom User-Agent | `winter_olympics_hosts_raw.csv` |
-| `olympedia_org_scraper.py` | Static scraping (`requests`, `BeautifulSoup`) | `olympedia_medals_all.csv` |
-| `olympics_com_scraper.py` | Dynamic scraping (`Selenium`) — retained to demonstrate interaction with dynamic web elements | — |
-| `scraper_countries_api_get.py` | REST API (`restcountries.com`) | `countries_neighbors.json` |
+| `Scraper/wikipedia_medals_scraper.py` | Static scraping (`requests`, `BeautifulSoup`) | `Data_raw/raw_wikipedia_medals.csv` |
+| `Scraper/wikipedia_hosts_scraper.py` | Static scraping with custom User-Agent | `Data_raw/raw_wikipedia_hosts.csv` |
+| `Scraper/olympedia_scraper.py` | Static scraping (`requests`, `BeautifulSoup`) | `Data_raw/raw_olympedia_medals.csv` |
+| `Scraper/olympics_com_scraper.py` | Dynamic scraping (`Selenium`) — retained to demonstrate interaction with dynamic web elements | `Data_raw/raw_olympics_com_medals_milano-cortina-2026.csv` |
+| `Scraper/restcountries_api_collector.py` | REST API (`restcountries.com`) | `Data_raw/raw_restcountries_api.json` |
 
 > **Note on Olympics.com:** This site was initially targeted as the primary source for historical medal data. However, different editions of the Games use structurally different web layouts, making consistent extraction across years unfeasible. We pivoted to Olympedia as the main historical source. The Olympics.com scraper is retained to demonstrate handling of dynamic elements such as cookie consent banners and virtualized DOM scrollers.
 
@@ -42,9 +42,9 @@ This repository contains the code and data for our group project in the **CIP** 
 
 | Script | Role | Output |
 |---|---|---|
-| `clean_winter_olympics.py` | Resolves schema inconsistencies, fixes column types, recomputes missing totals, flags outliers | `winter_olympics_medals_clean.csv` |
-| `H2_preprocessing.py` | Builds the master DiD dataset by merging medal data with sport categorisation | `Data_clean/winter_olympics_medals_did_clean.csv` |
-| `feature_engineering_h3.py` | Standardises country names to ISO-3, merges host and neighbour data, computes `Is_Host`, `Is_Host_Neighbour`, and rolling baseline | `winter_olympics_analysis_ready.csv` |
+| `Feature Engineering & Hypothesis/H1_H3_integration_and_preprocessing.py` | Cleans raw Olympic medal data, standardizes host countries, merges neighbours, and produces the H1/H3 analysis-ready dataset | `Data_clean/clean_wikipedia_medals_features.csv` |
+| `Feature Engineering & Hypothesis/H2_integration_and_preprocessing.py` | Builds the master DiD dataset by merging olympedia medals with sport categorisation and host mapping | `Data_clean/clean_olympedia_master.csv` |
+| `feature_engineering_h3.py` | Legacy feature engineering script; replaced by `H1_H3_integration_and_preprocessing.py` | — |
 
 ### 3. Analysis & Visualisation
 
@@ -80,15 +80,14 @@ Run scripts in the following order to reproduce all results from scratch:
 
 ```bash
 # Step 1 — Data Collection
-python wiki_scraper.py
-python wikipedia_hostcountries_scraper.py
-python olympedia_org_scraper.py
-python scraper_countries_api_get.py
+python "Scraper/wikipedia_medals_scraper.py"
+python "Scraper/wikipedia_hosts_scraper.py"
+python "Scraper/olympedia_scraper.py"
+python "Scraper/restcountries_api_collector.py"
 
 # Step 2 — Cleaning & Transformation
-python clean_winter_olympics.py
-python "Feature Engineering & Hypothesis/H2_preprocessing.py"
-python feature_engineering_h3.py
+python "Feature Engineering & Hypothesis/H1_H3_integration_and_preprocessing.py"
+python "Feature Engineering & Hypothesis/H2_integration_and_preprocessing.py"
 
 # Step 3 — Analysis
 python "Feature Engineering & Hypothesis/H2_analysis_and_visualization.py"

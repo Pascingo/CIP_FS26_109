@@ -92,16 +92,17 @@ def scrape_winter_olympic_hosts(url: str = "https://en.wikipedia.org/wiki/Winter
     return df_clean
 
 
+OUTPUT_FILE = "../Data_raw/raw_wikipedia_hosts.csv"
+
+
 if __name__ == "__main__":
     # Execute the scraping function
     df_hosts = scrape_winter_olympic_hosts()
 
     if not df_hosts.empty:
-        output_file = "../Data_raw/raw_data_winter_olympics_hosts.csv"
-
         # Export the cleaned DataFrame to a CSV file
-        df_hosts.to_csv(output_file, index=False)
-        print(f"\nSuccessfully saved {len(df_hosts)} records to '{output_file}'.")
+        df_hosts.to_csv(OUTPUT_FILE, index=False)
+        print(f"\nSuccessfully saved {len(df_hosts)} records to '{OUTPUT_FILE}'.")
 
         # Display the first few rows to verify the output
         print(df_hosts.head())

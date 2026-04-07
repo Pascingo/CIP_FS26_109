@@ -124,8 +124,11 @@ if __name__ == "__main__":
     current_script_dir = Path(__file__).resolve().parent
     base_project_dir = current_script_dir.parent
 
-    input_file = base_project_dir / "Data_clean" / "winter_olympics_analysis_ready.csv"
-    output_image = base_project_dir / "Visualisations" / "spillover_effect_analysis.png"
+    input_file = base_project_dir / "Data_clean" / "clean_wikipedia_medals_features.csv"
+    if not input_file.exists():
+        raise FileNotFoundError(f"Required file not found: {input_file}")
+
+    output_image = base_project_dir / "Visualisations" / "H3_spillover_effect_analysis.png"
 
     try:
         # Laden der Daten

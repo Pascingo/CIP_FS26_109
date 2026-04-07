@@ -2,8 +2,8 @@
 DiD analysis pipeline (Steps 2 & 3) — Subjective vs Objective only
 
 Inputs expected (from Step 1):
-- winter_olympics_medals_did_clean.csv (built from olympedia_medals_all.csv, sport_pairs_categorized.csv,
-  and winter_olympics_hosts_integrated.csv)
+- clean_olympedia_master.csv (built from raw_olympedia_medals.csv, sport_pairs_categorized.csv,
+  and clean_wikipedia_hosts.csv)
 
 Outputs created:
 - did_did_summary_full.txt
@@ -45,7 +45,7 @@ if not OUTPUT_ROOT.exists():
     OUTPUT_ROOT = ROOT_DIR / "Visualisations"
 OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
 
-FN_MASTER = DATA_DIR / "winter_olympics_medals_did_clean.csv"  # produced by Step 1
+FN_MASTER = DATA_DIR / "clean_olympedia_master.csv"  # produced by Step 1
 
 # Choose "share_points" (Gold=3, Silver=2, Bronze=1) or "share_medals" (each medal=1)
 OUTCOME_COL = "share_points"

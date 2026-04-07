@@ -1,3 +1,4 @@
+import os
 import time
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -16,7 +17,7 @@ from selenium.common.exceptions import (
     TimeoutException
 )
 
-
+OUTPUT_DIR = "../Data_raw"
 EXPAND_XPATH = "//button[@aria-expanded='false' and contains(@title, 'open the row')]"
 
 
@@ -32,12 +33,10 @@ def setup_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
 
-    # Automatically download and set up the correct ChromeDriver
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
     return driver
-
 
 
 def expand_until_stable(driver, max_passes=25):
@@ -57,17 +56,14 @@ def expand_until_stable(driver, max_passes=25):
         clicked_this_pass = 0
         for btn in buttons:
             try:
-                    # Still collapsed?
                 if btn.get_attribute("aria-expanded") != "false":
                     continue
 
-                # Prefer native click; fallback to JS click if Selenium thinks it's not interactable
                 try:
                     btn.click()
                 except Exception:
                     driver.execute_script("arguments[0].click();", btn)
 
-                # Give React/JS time to update aria-expanded and mount nested rows
                 WebDriverWait(driver, 2).until(lambda d: btn.get_attribute("aria-expanded") == "true")
 
                 clicked_this_pass += 1
@@ -75,12 +71,10 @@ def expand_until_stable(driver, max_passes=25):
                 time.sleep(0.4)
 
             except (StaleElementReferenceException, ElementClickInterceptedException, TimeoutException):
-                # DOM re-rendered or overlay intercepted; next pass usually catches it
                 continue
             except Exception:
                 continue
 
-        # If nothing changed in this pass, we’re stable for the current DOM slice
         if clicked_this_pass == 0:
             break
 
@@ -112,22 +106,17 @@ def expand_entire_site(driver, step=900, max_cycles=300):
     while cycles < max_cycles:
         cycles += 1
 
-        # 1) Expand everything currently available in the DOM (including newly injected nested stuff)
         clicked = expand_until_stable(driver)
         grand_total += clicked
         if clicked > 0:
-            # Important: do NOT scroll yet — expanding often reveals more nested expanders immediately
             continue
 
-        # 2) If stable (no clicks), THEN scroll to load next virtual slice
         moved = scroll_down_only_if_needed(driver, step=step)
 
-        # 3) If we didn't move, we might be at the end. Confirm no expanders exist.
         if not moved:
             remaining = driver.find_elements(By.XPATH, EXPAND_XPATH)
             if not remaining:
                 break
-            # If remaining exists but no movement, try a small nudge + one more expand pass
             driver.execute_script("window.scrollBy(0, 250);")
             time.sleep(0.6)
 
@@ -146,7 +135,6 @@ def scrape_olympics_medals(url):
     try:
         driver.get(url)
 
-        # 1. Handle primary Cookie Banner (Accept All)
         try:
             print("Looking for the main cookie banner ('Accept all')...")
             cookie_button = WebDriverWait(driver, 10).until(
@@ -158,7 +146,6 @@ def scrape_olympics_medals(url):
         except Exception:
             print("No 'Accept all' banner found.")
 
-        # 1b. Handle secondary Cookie Banner (Confirm Choices)
         try:
             print("Checking for a secondary preference banner...")
             second_cookie_button = WebDriverWait(driver, 5).until(
@@ -170,13 +157,10 @@ def scrape_olympics_medals(url):
         except Exception:
             print("No secondary cookie banner found. The path is clear.")
 
-        # 2. Expand EVERYTHING first (scroll only when no new expandable sections exist)
         print("Phase A: Expanding all rows (scrolling only when stable)...")
         total_expanded = expand_entire_site(driver, step=900)
-        #total_expanded += expand_entire_site(driver, step=900)
         print(f"Expansion complete. Total expanded clicks: {total_expanded}")
 
-        # 3. Scroll back to top and scrape top->bottom (virtualized DOM => must scroll while scraping)
         print("Phase B: Scrolling back to top and scraping...")
         driver.execute_script("window.scrollTo(0, 0);")
         time.sleep(1)
@@ -189,23 +173,17 @@ def scrape_olympics_medals(url):
             all_rows = driver.find_elements(By.CSS_SELECTOR, "div[role='row']")
 
             for row_el in all_rows:
-
-                # Only process rows that contain a medal div
                 medal_divs = row_el.find_elements(By.CSS_SELECTOR, "div[title*='medal']")
                 if not medal_divs:
                     continue
 
-                # Walk backwards through siblings in the live DOM to find
-                # the nearest preceding header button — that is this row's parent event
                 header_el = driver.execute_script("""
                     let node = arguments[0];
                     for (let depth = 0; depth < 6; depth++) {
                         node = node.parentElement;
                         if (!node) break;
-                        // The parent itself might be the button (Structure A)
                         if (node.tagName === 'BUTTON' && node.hasAttribute('aria-expanded'))
                             return node;
-                        // Or walk backwards among the parent's siblings (Structure B)
                         let sib = node.previousElementSibling;
                         for (let i = 0; i < 10 && sib; i++) {
                             if (sib.tagName === 'BUTTON' && sib.hasAttribute('aria-expanded'))
@@ -219,9 +197,8 @@ def scrape_olympics_medals(url):
                 if header_el is None:
                     continue
 
-                # Parse sport/discipline from that header's title attribute
                 title_text = header_el.get_attribute('title')
-                if ':' not in title_text:
+                if not title_text or ':' not in title_text:
                     continue
 
                 event_name = title_text.split(':')[0].strip()
@@ -233,7 +210,6 @@ def scrape_olympics_medals(url):
                     sport = event_name
                     discipline = "Overall"
 
-                # Parse the row's own HTML with BeautifulSoup as before
                 row_soup = BeautifulSoup(row_el.get_attribute('outerHTML'), 'html.parser')
 
                 medal_type = medal_divs[0].get_attribute('title')
@@ -250,12 +226,14 @@ def scrape_olympics_medals(url):
                 seen.add(key)
 
                 extracted_data.append({
-                    'Sport': sport, 'Discipline': discipline,
-                    'Medal': medal_type, 'NOC': noc_code,
-                    'Country': country_full, 'Athlete': athlete_name
+                    'Sport': sport,
+                    'Discipline': discipline,
+                    'Medal': medal_type,
+                    'NOC': noc_code,
+                    'Country': country_full,
+                    'Athlete': athlete_name,
                 })
 
-            # scroll down for next virtual slice; stop when no movement
             if not scroll_down_only_if_needed(driver, step=900):
                 if second_pass:
                     break
@@ -263,7 +241,6 @@ def scrape_olympics_medals(url):
                 driver.execute_script("window.scrollTo(0, 0);")
                 time.sleep(1)
 
-        # 4. Create DataFrame and CLEAN DUPLICATES
         print(f"Total raw records extracted (including duplicates): {len(extracted_data)}")
         df = pd.DataFrame(extracted_data)
 
@@ -282,21 +259,16 @@ def scrape_olympics_medals(url):
         driver.quit()
 
 
-# --- Main Execution Block ---
 if __name__ == "__main__":
     target_url = "https://www.olympics.com/en/milano-cortina-2026/medals/medals-by-sport"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Run the scraper
     df_results = scrape_olympics_medals(target_url)
 
-    # Save results to CSV
     if df_results is not None and not df_results.empty:
-        # Extrahiert "milano-cortina-2026" für einen sauberen Dateinamen
         game_slug = target_url.split('/')[4]
-        csv_filename = f"raw_data_olympics_medals_{game_slug}.csv"
-
+        csv_filename = os.path.join(OUTPUT_DIR, f"raw_olympics_com_medals_{game_slug}.csv")
         df_results.to_csv(csv_filename, index=False, encoding='utf-8')
-
         print(f"\nData successfully saved to '{csv_filename}'.")
         print("\nPreview of the first 5 rows:")
         print(df_results.head())

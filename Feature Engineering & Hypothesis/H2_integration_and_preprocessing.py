@@ -2,16 +2,16 @@
 Step 1: Build master dataset for DiD / DDD analysis.
 
 Reads:
-  - olympedia_medals_all.csv             (medal-level results)
+  - raw_olympedia_medals.csv             (medal-level results)
   - sport_pairs_categorized.csv          (Sport/Event -> category: subjective|objective|mixed)
-  - winter_olympics_hosts_integrated.csv (authoritative Year -> Host mapping, ISO3)
+  - clean_wikipedia_hosts.csv            (authoritative Year -> Host mapping, ISO3)
 
 Writes:
-  - Data_clean/winter_olympics_medals_did_clean.csv
+  - Data_clean/clean_olympedia_master.csv
   - Data_clean/unmatched_sport_event_pairs.csv   (ONLY if some Sport–Event pairs are missing in the categorization)
 
 How to run:
-$ python build_master.py
+$ python "Feature Engineering & Hypothesis/H2_integration_and_preprocessing.py"
 """
 
 import sys
@@ -30,10 +30,10 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 # --------------------------
 # Config
 # --------------------------
-FN_MEDALS = DATA_DIR / "olympedia_medals_all.csv"             # medal-level data  
+FN_MEDALS = RAW_DIR / "raw_olympedia_medals.csv"             # medal-level data  
 FN_PAIRS  = RAW_DIR / "sport_pairs_categorized.csv"          # Sport/Event -> category  
-FN_HOSTS  = ROOT_DIR / "winter_olympics_hosts_integrated.csv" # Year -> Host mapping     
-FN_OUT    = DATA_DIR / "winter_olympics_medals_did_clean.csv"
+FN_HOSTS = DATA_DIR / "clean_wikipedia_hosts.csv"            # authoritative host mapping
+FN_OUT    = DATA_DIR / "clean_olympedia_master.csv"
 
 # Medal points map (for "points"-weighted shares in later steps)
 MEDAL_MAP = {"Gold": 3, "Silver": 2, "Bronze": 1}

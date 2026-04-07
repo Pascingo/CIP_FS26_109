@@ -24,8 +24,8 @@ import numpy as np
 import re
 
 
-INPUT  = "../Data_raw/winter_olympics_medals_master.csv"
-OUTPUT = "../Data_clean/winter_olympics_medals_clean.csv"
+INPUT  = "../Data_raw/raw_wikipedia_medals.csv"
+OUTPUT = "../Data_clean/clean_wikipedia_medals.csv"
 REPORT = "../Data_clean/winter_olympics_cleaning_report.txt"
 
 report_lines: list[str] = []

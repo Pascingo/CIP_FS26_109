@@ -48,10 +48,10 @@ def build_analysis_dataset():
     # 1. Load datasets
     print("Loading datasets...")
     # Use the CLEANED medals data!
-    df_medals = pd.read_csv("../Data_clean/winter_olympics_medals_clean.csv")
-    df_hosts = pd.read_csv("../Data_raw/winter_olympics_hosts_integrated.csv")
+    df_medals = pd.read_csv("../Data_clean/clean_wikipedia_medals.csv")
+    df_hosts = pd.read_csv("../Data_clean/clean_wikipedia_hosts.csv")
 
-    with open("../Data_raw/countries_neighbors.json", "r", encoding="utf-8") as f:
+    with open("../Data_raw/raw_restcountries_api.json", "r", encoding="utf-8") as f:
         neighbors_json = json.load(f)
 
     # 2. Transform the JSON list into a fast lookup dictionary
@@ -92,7 +92,7 @@ def build_analysis_dataset():
     df_merged['Is_Host'] = df_merged['Country_ISO3'] == df_merged['Host_ISO3']
 
     # 6. Export the final dataset
-    output_file = "../Data_clean/winter_olympics_analysis_ready.csv"
+    output_file = "../Data_clean/clean_wikipedia_medals_features.csv"
     df_merged.to_csv(output_file, index=False)
 
     print(f"\nSuccess! Final dataset with {len(df_merged)} rows saved to '{output_file}'.")

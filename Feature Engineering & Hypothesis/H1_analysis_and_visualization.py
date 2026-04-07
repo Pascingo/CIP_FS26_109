@@ -31,12 +31,15 @@ from scipy import stats
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 0. Paths
-# ══════════════════════════════════════════════════════════════════════════════
+# ══════════════════════════════════════════════════════════════════════════════════════
 
 current_script_dir = Path(__file__).resolve().parent
 BASE = current_script_dir.parent
 
-DATA = BASE / "Data_clean" / "winter_olympics_analysis_ready.csv"
+DATA = BASE / "Data_clean" / "clean_wikipedia_medals_features.csv"
+if not DATA.exists():
+    raise FileNotFoundError(f"Required file not found: {DATA}")
+
 OUT_CSV = BASE / "Visualisations"/ "H1_regression_results.csv"
 OUT_UPLIFT = BASE / "Visualisations"/ "H1_host_uplift.png"
 
