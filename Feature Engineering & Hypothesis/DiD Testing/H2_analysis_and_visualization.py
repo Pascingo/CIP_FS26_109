@@ -2,25 +2,22 @@
 DiD analysis pipeline (Steps 2 & 3) — Subjective vs Objective only
 
 Inputs expected (from Step 1):
-- master_did.csv (built from olympedia_medals_all.csv, sport_pairs_categorized.csv,
+- winter_olympics_medals_did_clean.csv (built from olympedia_medals_all.csv, sport_pairs_categorized.csv,
   and winter_olympics_hosts_integrated.csv)
 
 Outputs created:
-- panel_agg.csv
-    NOC × Year × Category panel with medal/point totals and shares
-
 - did_did_summary_full.txt
     Full statsmodels DiD output (all coefficients incl. fixed effects + diagnostics)
 - did_did_summary.txt
     Compact DiD table (key terms only) in a publication-style layout
-
 - event_study_model_summary_full.txt
     Full statsmodels stacked event-study output (all coefficients + diagnostics)
 - event_study_model_summary.txt
     Compact event-study table (host-at-k=0 plus subjective lead/lag increments)
-
 - event_study_subjective.png
     Event-study plot for incremental host effect in subjective sports vs objective baseline
+
+All outputs are written to the root Visualisations directory.
 
 How to run:
 $ python H2_analysis_and_visualization.py
@@ -41,8 +38,14 @@ from pathlib import Path
 # =========================
 # Config (edit as needed)
 # =========================
-FN_MASTER = "master_did.csv"  # produced by Step 1
-FN_PANEL = "panel_agg.csv"
+ROOT_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT_DIR / "Data_clean"
+OUTPUT_ROOT = ROOT_DIR / "Visualizations"
+if not OUTPUT_ROOT.exists():
+    OUTPUT_ROOT = ROOT_DIR / "Visualisations"
+OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+
+FN_MASTER = DATA_DIR / "winter_olympics_medals_did_clean.csv"  # produced by Step 1
 
 # Choose "share_points" (Gold=3, Silver=2, Bronze=1) or "share_medals" (each medal=1)
 OUTCOME_COL = "share_points"
@@ -309,7 +312,7 @@ def ensure_required(df: pd.DataFrame, cols: set, name: str):
 # =========================
 # STEP 2: BUILD PANEL & DiD (subjective vs objective)
 # =========================
-def build_panel_and_run_did(fn_master: str, fn_panel_out: str, outcome_col: str) -> pd.DataFrame:
+def build_panel_and_run_did(fn_master: str, outcome_col: str) -> pd.DataFrame:
     print("\n[Step 2] Building panel & running DiD (subjective vs objective)…")
 
     master = read_csv_safely(fn_master)
@@ -363,9 +366,8 @@ def build_panel_and_run_did(fn_master: str, fn_panel_out: str, outcome_col: str)
         sys.exit(f"[ERROR] Outcome column '{outcome_col}' not found in panel.")
     panel["outcome"] = panel[outcome_col].astype(float)
 
-    # 2.4 Save the panel
-    panel.sort_values(["Jahr", "NOC", "category"]).to_csv(fn_panel_out, index=False, encoding="utf-8")
-    print(f"[OK] Wrote panel: {fn_panel_out}")
+    panel = panel.sort_values(["Jahr", "NOC", "category"]).reset_index(drop=True)
+    print("[OK] Built in-memory panel for DiD and event-study analysis.")
 
     # 2.5 DiD with heterogeneity by judging type
     # Objective is the omitted baseline category.
@@ -389,12 +391,14 @@ def build_panel_and_run_did(fn_master: str, fn_panel_out: str, outcome_col: str)
 
     # 2.6 Save results
     # Write the full statsmodels summary (all coefficients incl. FE + diagnostics)
-    with open("did_did_summary_full.txt", "w", encoding="utf-8") as f:
+    did_full_path = OUTPUT_ROOT / "did_did_summary_full.txt"
+    with open(did_full_path, "w", encoding="utf-8") as f:
             f.write(model.summary().as_text())
     # Short, publication-style table
-    with open("did_did_summary.txt", "w", encoding="utf-8") as f:
+    did_short_path = OUTPUT_ROOT / "did_did_summary.txt"
+    with open(did_short_path, "w", encoding="utf-8") as f:
             f.write(format_did_table(model, dep_var_label="Medal_Share"))
-    print("[OK] Wrote regression summary: did_did_summary.txt")
+    print(f"[OK] Wrote regression summary: {did_short_path}")
 
     coef_table = (
         model.summary2().tables[1]
@@ -502,12 +506,14 @@ def event_study_and_plots(panel: pd.DataFrame, outcome_col: str,
     )
 
     # Write the full statsmodels summary (all coefficients incl. FE + diagnostics)
-    with open("event_study_model_summary_full.txt", "w", encoding="utf-8") as f:
+    es_full_path = OUTPUT_ROOT / "event_study_model_summary_full.txt"
+    with open(es_full_path, "w", encoding="utf-8") as f:
             f.write(es_mod.summary().as_text())
     # Short, publication-style table
-    with open("event_study_model_summary.txt", "w", encoding="utf-8") as f:
+    es_short_path = OUTPUT_ROOT / "event_study_model_summary.txt"
+    with open(es_short_path, "w", encoding="utf-8") as f:
             f.write(format_event_study_table(es_mod, dep_var_label="Medal_Share", ref_k=ref_k, k_list=[k for k in range(k_min, k_max+1) if k != ref_k]))
-    print("[OK] Wrote model summary: event_study_model_summary.txt")
+    print(f"[OK] Wrote model summary: {es_short_path}")
 
     # 3.4 Extract tidy profile for plotting
     def extract_profile(model, label_keyword: str, ref_k_value: int) -> pd.DataFrame:
@@ -595,12 +601,13 @@ def event_study_and_plots(panel: pd.DataFrame, outcome_col: str,
         plt.savefig(outfile)
         plt.close()
 
+    plot_path = OUTPUT_ROOT / "event_study_subjective.png"
     plot_profile(
         prof_subj,
         "Event-study: Incremental host effect in Subjective sports (vs Objective baseline)",
-        "event_study_subjective.png"
+        plot_path
     )
-    print("[OK] Wrote plot: event_study_subjective.png")
+    print(f"[OK] Wrote plot: {plot_path}")
 
     print("\n[Step 3] Done. Check the CSV and PNG for lead/lag patterns and pre-trends.")
 
@@ -611,7 +618,6 @@ def event_study_and_plots(panel: pd.DataFrame, outcome_col: str,
 if __name__ == "__main__":
     panel = build_panel_and_run_did(
         fn_master=FN_MASTER,
-        fn_panel_out=FN_PANEL,
         outcome_col=OUTCOME_COL
     )
 
@@ -623,4 +629,4 @@ if __name__ == "__main__":
         ref_k=REF_K
     )
 
-    print("\n[All done] Outputs saved in the working directory.")
+    print(f"\n[All done] Outputs saved in {OUTPUT_ROOT}.")

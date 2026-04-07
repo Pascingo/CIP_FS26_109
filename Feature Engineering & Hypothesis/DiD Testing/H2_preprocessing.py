@@ -7,8 +7,8 @@ Reads:
   - winter_olympics_hosts_integrated.csv (authoritative Year -> Host mapping, ISO3)
 
 Writes:
-  - master_did.csv
-  - unmatched_sport_event_pairs.csv   (ONLY if some Sport–Event pairs are missing in the categorization)
+  - Data_clean/winter_olympics_medals_did_clean.csv
+  - Data_clean/unmatched_sport_event_pairs.csv   (ONLY if some Sport–Event pairs are missing in the categorization)
 
 How to run:
 $ python build_master.py
@@ -19,12 +19,21 @@ import pandas as pd
 from pathlib import Path
 
 # --------------------------
-# Config (filenames in current directory)
+# Repository root and data paths
 # --------------------------
-FN_MEDALS = "Data_clean/olympedia_medals_all.csv"             # medal-level data  
-FN_PAIRS  = "Data_raw/sport_pairs_categorized.csv"          # Sport/Event -> category  
-FN_HOSTS  = "winter_olympics_hosts_integrated.csv" # Year -> Host mapping     
-FN_OUT    = "master_did.csv"
+ROOT_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT_DIR / "Data_clean"
+RAW_DIR = ROOT_DIR / "Data_raw"
+
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+# --------------------------
+# Config
+# --------------------------
+FN_MEDALS = DATA_DIR / "olympedia_medals_all.csv"             # medal-level data  
+FN_PAIRS  = RAW_DIR / "sport_pairs_categorized.csv"          # Sport/Event -> category  
+FN_HOSTS  = ROOT_DIR / "winter_olympics_hosts_integrated.csv" # Year -> Host mapping     
+FN_OUT    = DATA_DIR / "winter_olympics_medals_did_clean.csv"
 
 # Medal points map (for "points"-weighted shares in later steps)
 MEDAL_MAP = {"Gold": 3, "Silver": 2, "Bronze": 1}
@@ -113,7 +122,7 @@ unmatched = (
           .sort_values(["Sport", "Event"])
 )
 if len(unmatched) > 0:
-    unmatched_file = "unmatched_sport_event_pairs.csv"
+    unmatched_file = DATA_DIR / "unmatched_sport_event_pairs.csv"
     unmatched.to_csv(unmatched_file, index=False)
     print(f"[WARN] {len(unmatched)} Sport–Event pairs not categorized. See -> {unmatched_file}")
 

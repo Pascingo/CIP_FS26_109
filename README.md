@@ -43,8 +43,8 @@ This repository contains the code and data for our group project in the **CIP** 
 | Script | Role | Output |
 |---|---|---|
 | `clean_winter_olympics.py` | Resolves schema inconsistencies, fixes column types, recomputes missing totals, flags outliers | `winter_olympics_medals_clean.csv` |
-| `H2_preprocessing.py` | Builds the master DiD dataset by merging medal data with sport categorisation | `master_did.csv` |
-| `feature_engineering_h3.py` | Standardises country names to ISO-3, merges host and neighbour data, computes `Is_Host`, `Is_Host_Neighbour`, and rolling baseline | `winter_olympics_analysis_ready.csv`, `panel_agg.csv` |
+| `H2_preprocessing.py` | Builds the master DiD dataset by merging medal data with sport categorisation | `Data_clean/winter_olympics_medals_did_clean.csv` |
+| `feature_engineering_h3.py` | Standardises country names to ISO-3, merges host and neighbour data, computes `Is_Host`, `Is_Host_Neighbour`, and rolling baseline | `winter_olympics_analysis_ready.csv` |
 
 ### 3. Analysis & Visualisation
 
@@ -87,12 +87,11 @@ python scraper_countries_api_get.py
 
 # Step 2 — Cleaning & Transformation
 python clean_winter_olympics.py
-python H2_preprocessing.py
+python "Feature Engineering & Hypothesis/H2_preprocessing.py"
 python feature_engineering_h3.py
 
 # Step 3 — Analysis
-python panel_regression.py
-python H2_analysis_and_visualization.py
+python "Feature Engineering & Hypothesis/H2_analysis_and_visualization.py"
 python H3_analysis_and_visualization.py
 ```
 
