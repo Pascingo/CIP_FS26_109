@@ -2,7 +2,7 @@ import requests
 import json
 
 URL = "https://restcountries.com/v3.1/all?fields=cca3,borders"
-OUTPUT_JSON = "../Data_raw/raw_restcountries_api.json"
+OUTPUT_JSON = "./Data_raw/raw_restcountries_api.json"
 
 
 def fetch_country_neighbors():

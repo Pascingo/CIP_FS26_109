@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-OUTPUT_CSV = "../Data_raw/raw_wikipedia_medals.csv"
+OUTPUT_CSV = "./Data_raw/raw_wikipedia_medals.csv"
 
 def scrape_medal_table_by_year(year):
     # Dynamic URL (f-string)

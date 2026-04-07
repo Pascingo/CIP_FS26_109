@@ -92,7 +92,7 @@ def scrape_winter_olympic_hosts(url: str = "https://en.wikipedia.org/wiki/Winter
     return df_clean
 
 
-OUTPUT_FILE = "../Data_raw/raw_wikipedia_hosts.csv"
+OUTPUT_FILE = "./Data_raw/raw_wikipedia_hosts.csv"
 
 
 if __name__ == "__main__":

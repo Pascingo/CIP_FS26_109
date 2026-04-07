@@ -17,7 +17,7 @@ from selenium.common.exceptions import (
     TimeoutException
 )
 
-OUTPUT_DIR = "../Data_raw"
+OUTPUT_DIR = "./Data_raw"
 EXPAND_XPATH = "//button[@aria-expanded='false' and contains(@title, 'open the row')]"
 
 
