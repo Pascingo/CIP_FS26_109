@@ -9,5 +9,4 @@ lxml
 pycountry
 statsmodels
 seaborn
-StringIO
 matplotlib
