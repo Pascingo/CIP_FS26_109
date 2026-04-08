@@ -2,7 +2,7 @@
 
 **Repository:** `CIP_FS2026_Group109`
 
-This repository contains the code and data for our group project in the **CIP** module at HSLU. We investigate the "home advantage" at the Winter Olympics across three research questions: quantifying the host-country effect, testing whether it differs between subjectively and objectively judged sports, and examining whether it spills over to neighbouring nations.
+This repository contains the code and data for our group project in the CIP module at HSLU. We investigate the "home advantage" at the Winter Olympics across three research questions: quantifying the host-country effect, testing whether it differs between subjectively and objectively judged sports, and examining whether it spills over to neighbouring nations.
 
 ## Table of Contents
 1. [Research Questions](#research-questions)
@@ -44,15 +44,14 @@ This repository contains the code and data for our group project in the **CIP** 
 |---|---|---|
 | `Feature Engineering & Hypothesis/H1_H3_integration_and_preprocessing.py` | Cleans raw Olympic medal data, standardizes host countries, merges neighbours, and produces the H1/H3 analysis-ready dataset | `Data_clean/clean_wikipedia_medals_features.csv` |
 | `Feature Engineering & Hypothesis/H2_integration_and_preprocessing.py` | Builds the master DiD dataset by merging olympedia medals with sport categorisation and host mapping | `Data_clean/clean_olympedia_master.csv` |
-| `feature_engineering_h3.py` | Legacy feature engineering script; replaced by `H1_H3_integration_and_preprocessing.py` | — |
 
 ### 3. Analysis & Visualisation
 
 | Script | Hypothesis | Methods |
 |---|---|---|
-| `panel_regression.py` | RQ1 | Panel regression, country & year fixed effects (`statsmodels`) |
-| `H2_analysis_and_visualization.py` | RQ2 | DiD with interaction term, event-study specification (`statsmodels`) |
-| `H3_analysis_and_visualization.py` | RQ3 | OLS regression, boxplots, scatterplots (`statsmodels`, `seaborn`, `matplotlib`) |
+| `Feature Engineering & Hypothesis/H1_analysis_and_visualization.py` | RQ1 | Panel regression, country fixed effects, clustered SEs (`scipy`, `numpy`) |
+| `Feature Engineering & Hypothesis/H2_analysis_and_visualization.py` | RQ2 | DiD with interaction term, event-study specification (`statsmodels`) |
+| `Feature Engineering & Hypothesis/H3_analysis_and_visualization.py` | RQ3 | OLS regression, boxplots, scatterplots (`statsmodels`, `seaborn`, `matplotlib`) |
 
 ---
 
@@ -90,8 +89,9 @@ python "Feature Engineering & Hypothesis/H1_H3_integration_and_preprocessing.py"
 python "Feature Engineering & Hypothesis/H2_integration_and_preprocessing.py"
 
 # Step 3 — Analysis
+python "Feature Engineering & Hypothesis/H1_analysis_and_visualization.py"
 python "Feature Engineering & Hypothesis/H2_analysis_and_visualization.py"
-python H3_analysis_and_visualization.py
+python "Feature Engineering & Hypothesis/H3_analysis_and_visualization.py"
 ```
 
 > `olympics_com_scraper.py` is not part of the production pipeline and does not need to be executed to reproduce results.
@@ -109,6 +109,6 @@ python H3_analysis_and_visualization.py
 
 ## Team & Contributions
 
-- Birk Diener: Feasability Study, Olympics Scraper & Hypothesis 1
+- Birk Diener: Feasability Study, Olympics Scraper, Olympedia Scraper & Hypothesis 1
 - Stefan Génevaux: Feasability Study, Olympics Scraper & Hypothesis 2
 - Pascal Ingold: Feasability Study, Wikipedia Scraper, Olympics Scraper, Countries API & Hypothesis 3
