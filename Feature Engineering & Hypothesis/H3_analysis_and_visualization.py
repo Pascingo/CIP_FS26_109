@@ -31,7 +31,11 @@ def prepare_analysis_metrics(df: pd.DataFrame) -> pd.DataFrame:
     # We sort by Country and Year to ensure chronological order.
     # Then we shift the Medal Share by 1 period (the previous Olympics) for each country.
     df = df.sort_values(by=['Country_ISO3', 'Year'])
-    df['Historical_Baseline'] = df.groupby('Country_ISO3')['Medal_Share'].shift(1)
+
+    def rolling_prev3(series):
+        return series.shift(1).rolling(window=3, min_periods=3).mean()
+
+    df['Historical_Baseline'] = df.groupby('Country_ISO3')['Medal_Share'].transform(rolling_prev3)
 
     # 3. Format boolean columns for statsmodels (True/False -> 1/0)
     df['Is_Host'] = df['Is_Host'].astype(int)
@@ -50,7 +54,7 @@ def run_regression(df: pd.DataFrame):
 
     # Drop rows missing the Historical Baseline (e.g., a country's very first appearance)
     # Regression cannot handle NaN values.
-    df_reg = df.dropna(subset=['Medal_Share', 'Historical_Baseline', 'Is_Host_Neighbour', 'Is_Host'])
+    df_reg = df.dropna(subset=['Historical_Baseline', 'Is_Host_Neighbour', 'Is_Host'])
 
     # Model Formula: Medal_Share is explained by Neighbour-Status, Host-Status, and Past Performance
     # We MUST control for 'Is_Host' because the host itself usually has a massive bump.
