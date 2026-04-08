@@ -63,43 +63,43 @@ def is_digit_str(s: str) -> bool:
 
 
 def parse_row(row) -> dict | None:
-    rank_raw = str(row.get("Rank", "")).strip()
-    noc = str(row.get("NOC", "")).strip()
-    nation = str(row.get("Nation", "")).strip()
+    rank_raw = str(row["Rank"]).strip()   if pd.notna(row["Rank"])   else ""
+    noc      = str(row["NOC"]).strip()    if pd.notna(row["NOC"])    else ""
+    nation   = str(row["Nation"]).strip() if pd.notna(row["Nation"]) else ""
 
-    rank_is_int = rank_raw.lstrip("–-").isdigit()
+    rank_is_int  = rank_raw.lstrip("–-").isdigit()
     noc_is_digit = is_digit_str(noc)
 
     if not rank_is_int and noc_is_digit and not nation:
         country = clean_name(rank_raw)
-        gold = int(noc)
-        silver = int(row.get("Gold", 0)) if pd.notna(row.get("Gold")) else None
-        bronze = int(row.get("Silver", 0)) if pd.notna(row.get("Silver")) else None
-        rank = None
+        gold    = int(noc)
+        silver  = int(row["Gold"])   if pd.notna(row["Gold"])   else None
+        bronze  = int(row["Silver"]) if pd.notna(row["Silver"]) else None
+        rank    = None
     elif noc and not noc_is_digit and not nation:
         country = clean_name(noc)
-        gold = int(row.get("Gold", 0)) if pd.notna(row.get("Gold")) else None
-        silver = int(row.get("Silver", 0)) if pd.notna(row.get("Silver")) else None
-        bronze = int(row.get("Bronze", 0)) if pd.notna(row.get("Bronze")) else None
-        rank = rank_raw
+        gold    = int(row["Gold"])   if pd.notna(row["Gold"])   else None
+        silver  = int(row["Silver"]) if pd.notna(row["Silver"]) else None
+        bronze  = int(row["Bronze"]) if pd.notna(row["Bronze"]) else None
+        rank    = rank_raw
     elif not noc and nation and rank_is_int:
         country = clean_name(nation)
-        gold = int(row.get("Gold", 0)) if pd.notna(row.get("Gold")) else None
-        silver = int(row.get("Silver", 0)) if pd.notna(row.get("Silver")) else None
-        bronze = int(row.get("Bronze", 0)) if pd.notna(row.get("Bronze")) else None
-        rank = rank_raw
+        gold    = int(row["Gold"])   if pd.notna(row["Gold"])   else None
+        silver  = int(row["Silver"]) if pd.notna(row["Silver"]) else None
+        bronze  = int(row["Bronze"]) if pd.notna(row["Bronze"]) else None
+        rank    = rank_raw
     elif not noc and nation and not rank_is_int:
         country = clean_name(rank_raw)
-        gold = int(row.get("Gold", 0)) if pd.notna(row.get("Gold")) else None
-        silver = int(row.get("Silver", 0)) if pd.notna(row.get("Silver")) else None
-        bronze = int(row.get("Bronze", 0)) if pd.notna(row.get("Bronze")) else None
-        rank = nation
+        gold    = int(row["Gold"])   if pd.notna(row["Gold"])   else None
+        silver  = int(row["Silver"]) if pd.notna(row["Silver"]) else None
+        bronze  = int(row["Bronze"]) if pd.notna(row["Bronze"]) else None
+        rank    = nation
     elif noc and nation:
         country = clean_name(nation)
-        gold = int(row.get("Gold", 0)) if pd.notna(row.get("Gold")) else None
-        silver = int(row.get("Silver", 0)) if pd.notna(row.get("Silver")) else None
-        bronze = int(row.get("Bronze", 0)) if pd.notna(row.get("Bronze")) else None
-        rank = rank_raw
+        gold    = int(row["Gold"])   if pd.notna(row["Gold"])   else None
+        silver  = int(row["Silver"]) if pd.notna(row["Silver"]) else None
+        bronze  = int(row["Bronze"]) if pd.notna(row["Bronze"]) else None
+        rank    = rank_raw
     else:
         return None
 
