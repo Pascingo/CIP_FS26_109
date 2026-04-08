@@ -6,7 +6,6 @@ This script merges the legacy medal cleaning logic with host-country / neighbour
 feature engineering to produce the final analysis-ready dataset used by H1 and H3.
 
 Outputs:
-  - Data_clean/clean_wikipedia_medals.csv
   - Data_clean/clean_wikipedia_hosts.csv
   - Data_clean/clean_wikipedia_medals_features.csv
 
@@ -35,17 +34,9 @@ RAW_WIKIPEDIA_MEDALS = DATA_RAW / "raw_wikipedia_medals.csv"
 RAW_WIKIPEDIA_HOSTS = DATA_RAW / "raw_wikipedia_hosts.csv"
 RAW_NEIGHBORS = DATA_RAW / "raw_restcountries_api.json"
 
-OUTPUT_CLEAN_MEDALS = DATA_CLEAN / "clean_wikipedia_medals.csv"
 OUTPUT_HOSTS_CLEAN = DATA_CLEAN / "clean_wikipedia_hosts.csv"
 OUTPUT_ANALYSIS_READY = DATA_CLEAN / "clean_wikipedia_medals_features.csv"
 REPORT_PATH = DATA_CLEAN / "winter_olympics_cleaning_report.txt"
-
-
-def find_existing_path(*paths: Path) -> Path:
-    for path in paths:
-        if path.exists():
-            return path
-    raise FileNotFoundError(f"None of the expected files were found: {paths}")
 
 
 def read_csv(path: Path, **kwargs) -> pd.DataFrame:
@@ -116,7 +107,7 @@ def parse_row(row) -> dict | None:
 
 
 def clean_medals_dataset(input_path: Path) -> pd.DataFrame:
-    df = read_csv(input_path, dtype=str)
+    df = read_csv(input_path, dtype=str, encoding="utf-8-sig")
     print(f"Loaded raw medals data from {input_path.name} ({len(df)} rows)")
 
     def is_junk_row(row) -> bool:
@@ -151,8 +142,29 @@ def clean_medals_dataset(input_path: Path) -> pd.DataFrame:
     df["Rank"] = pd.to_numeric(df["Rank"], errors="coerce").astype("Int64")
     df["Total"] = (df["Gold"] + df["Silver"] + df["Bronze"]).astype("Int64")
 
-    df = df[["Year", "Rank", "Country", "Gold", "Silver", "Bronze", "Total"]]
-    df = df.sort_values(["Year", "Rank"], na_position="last").reset_index(drop=True)
+    # Drop Rank: shared-rank entries were recorded as 0, repair is error-prone
+    # and the column is not required for analysis (documented decision)
+    df = df[["Year", "Country", "Gold", "Silver", "Bronze", "Total"]]
+    df = df.sort_values(["Year"], na_position="last").reset_index(drop=True)
+
+    # Outlier detection — Tukey IQR, global over all years per medal column
+    # Outliers are FLAGGED only; values are preserved as historical fact
+    MEDAL_COLS = ["Gold", "Silver", "Bronze", "Total"]
+    for col in MEDAL_COLS:
+        series = df[col].dropna().astype(float)
+        Q1, Q3 = series.quantile(0.25), series.quantile(0.75)
+        IQR = Q3 - Q1
+        lo = Q1 - 1.5 * IQR
+        hi = Q3 + 1.5 * IQR
+        outlier_mask = df[col].notna() & ((df[col].astype(float) < lo) | (df[col].astype(float) > hi))
+        df[f"{col}_outlier"] = outlier_mask
+        n_out = outlier_mask.sum()
+        print(f"  {col:<8}  Q1={Q1:.0f}  Q3={Q3:.0f}  IQR={IQR:.0f}"
+              f"  fences=[{lo:.1f}, {hi:.1f}]  outliers={n_out}")
+
+    total_flagged = df[[f"{c}_outlier" for c in MEDAL_COLS]].any(axis=1).sum()
+    print(f"  Rows flagged in ≥1 medal column: {total_flagged}")
+
     return df
 
 
@@ -238,9 +250,6 @@ def main() -> None:
     hosts_input = RAW_WIKIPEDIA_HOSTS
 
     clean_medals = clean_medals_dataset(medals_input)
-    clean_medals.to_csv(OUTPUT_CLEAN_MEDALS, index=False, encoding="utf-8")
-    print(f"Saved cleaned medals to {OUTPUT_CLEAN_MEDALS}")
-
     hosts = standardize_hosts(hosts_input)
     hosts.to_csv(OUTPUT_HOSTS_CLEAN, index=False)
     print(f"Saved host mapping to {OUTPUT_HOSTS_CLEAN}")

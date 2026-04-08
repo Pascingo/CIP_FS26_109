@@ -33,15 +33,16 @@ from scipy import stats
 # 0. Paths
 # ══════════════════════════════════════════════════════════════════════════════════════
 
-current_script_dir = Path(__file__).resolve().parent
-BASE = current_script_dir.parent
+BASE = Path(__file__).resolve().parents[1]
 
 DATA = BASE / "Data_clean" / "clean_wikipedia_medals_features.csv"
 if not DATA.exists():
     raise FileNotFoundError(f"Required file not found: {DATA}")
 
-OUT_CSV = BASE / "Visualisations"/ "H1_regression_results.csv"
-OUT_UPLIFT = BASE / "Visualisations"/ "H1_host_uplift.png"
+OUT_UPLIFT = BASE / "Visualisations" / "H1_host_uplift.png"
+
+# ensure output directory exists before writing
+OUT_UPLIFT.parent.mkdir(parents=True, exist_ok=True)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -229,33 +230,7 @@ print_results(m1)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 5. Save detailed results to CSV
-# ══════════════════════════════════════════════════════════════════════════════
-
-rows = []
-for var, d in m1["coefs"].items():
-    rows.append({
-        "model":        m1["model"],
-        "variable":     var,
-        "coefficient":  d["coef"],
-        "std_error":    d["se"],
-        "t_statistic":  d["t"],
-        "p_value":      d["p"],
-        "ci_lower":     d["ci_lo"],
-        "ci_upper":     d["ci_hi"],
-        "significance": d["sig"],
-        "n_obs":        m1["n_obs"],
-        "n_countries":  m1["n_countries"],
-        "r2_within":    m1["r2_within"],
-    })
-
-results_df = pd.DataFrame(rows)
-results_df.to_csv(OUT_CSV, index=False)
-print(f"\nDetailed results saved to {OUT_CSV.name}")
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 6. Visualisation — Host uplift per country (actual vs rolling baseline)
+# 5. Visualisation — Host uplift per country (actual vs rolling baseline)
 # ══════════════════════════════════════════════════════════════════════════════
 
 host_obs = df_reg[df_reg["is_host"] == 1][

@@ -24,8 +24,8 @@ def prepare_analysis_metrics(df: pd.DataFrame) -> pd.DataFrame:
     yearly_totals = df.groupby('Year')['Total'].sum().reset_index(name='Yearly_Total_Medals')
     df = pd.merge(df, yearly_totals, on='Year')
 
-    # Calculate the share (0.0 to 1.0)
-    df['Medal_Share'] = df['Total'] / df['Yearly_Total_Medals']
+    # Calculate the share as percentage (0–100), consistent with H1
+    df['Medal_Share'] = df['Total'] / df['Yearly_Total_Medals'] * 100
 
     # 2. Calculate the "Historical Baseline"
     # We sort by Country and Year to ensure chronological order.
@@ -126,7 +126,7 @@ def create_visualizations(df: pd.DataFrame, output_path: Path):
 if __name__ == "__main__":
     # Konsistente Pfadbehandlung mit Pathlib
     current_script_dir = Path(__file__).resolve().parent
-    base_project_dir = current_script_dir.parent
+    base_project_dir = Path(__file__).resolve().parents[1]
 
     input_file = base_project_dir / "Data_clean" / "clean_wikipedia_medals_features.csv"
     if not input_file.exists():

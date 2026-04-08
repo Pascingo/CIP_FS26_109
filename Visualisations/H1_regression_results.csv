@@ -1,3 +1,0 @@
-model,variable,coefficient,std_error,t_statistic,p_value,ci_lower,ci_upper,significance,n_obs,n_countries,r2_within
-M1: Country FE,is_host,3.08,0.7761,3.968,0.0004,1.4991,4.6609,***,355,33,0.2093
-M1: Country FE,rolling_avg,0.4688,0.0674,6.955,0.0,0.3315,0.6061,***,355,33,0.2093
