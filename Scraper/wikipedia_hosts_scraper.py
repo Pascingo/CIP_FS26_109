@@ -10,6 +10,7 @@ import re
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+from io import StringIO
 
 
 def scrape_winter_olympic_hosts(url: str = "https://en.wikipedia.org/wiki/Winter_Olympic_Games") -> pd.DataFrame:
@@ -33,21 +34,25 @@ def scrape_winter_olympic_hosts(url: str = "https://en.wikipedia.org/wiki/Winter
     try:
         # Add a timeout to prevent the script from hanging indefinitely
         response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
+        print(f"Status code: {response.status_code}")
+        #response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the URL: {e}")
         return pd.DataFrame()
 
     # Parse the HTML content
-    soup = BeautifulSoup(response.text, 'html.parser')
-
+    soup = BeautifulSoup(response.text, "html.parser")
+    
     # Extract all table elements from the parsed HTML into a list of DataFrames
-    tables = pd.read_html(str(soup))
+    try:
+        tables = pd.read_html(StringIO(str(soup)), flavor="bs4")
+    except:
+        raise Exception("Failed to convert to DF")
 
     host_table = None
 
     # Iterate through the extracted tables to identify the correct one based on column headers
-    for tbl in tables:
+    for i, tbl in enumerate(tables):
         # Wikipedia tables often feature MultiIndex columns (nested headers).
         # Flatten them to a single string level for easier querying.
         if isinstance(tbl.columns, pd.MultiIndex):
@@ -55,6 +60,7 @@ def scrape_winter_olympic_hosts(url: str = "https://en.wikipedia.org/wiki/Winter
 
         # Create a single string containing all column names to check for keywords
         col_names = " ".join([str(c) for c in tbl.columns])
+        print(f"Table {i}: {col_names}")
 
         if 'Year' in col_names and 'Host' in col_names:
             host_table = tbl
